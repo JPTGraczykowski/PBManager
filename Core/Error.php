@@ -5,11 +5,7 @@ namespace Core;
 /**
  * Error and exception handler
  *
-<<<<<<< HEAD
  * PHP version 7.0
-=======
- * PHP version 5.4
->>>>>>> 40af4e4a56966a0ccb88f2ec1ebf37dd27385227
  */
 class Error
 {
@@ -63,18 +59,7 @@ class Error
             $message .= "\nThrown in '" . $exception->getFile() . "' on line " . $exception->getLine();
 
             error_log($message);
-<<<<<<< HEAD
 
-=======
-            //echo "<h1>An error occurred</h1>";
-            /*
-            if ($code == 404) {
-                echo "<h1>Page not found</h1>";
-            } else {
-                echo "<h1>An error occurred</h1>";
-            }
-            */
->>>>>>> 40af4e4a56966a0ccb88f2ec1ebf37dd27385227
             View::renderTemplate("$code.html");
         }
     }
