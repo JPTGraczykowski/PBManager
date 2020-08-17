@@ -5,7 +5,11 @@ namespace Core;
 /**
  * Router
  *
+<<<<<<< HEAD
  * PHP version 7.0
+=======
+ * PHP version 5.4
+>>>>>>> 40af4e4a56966a0ccb88f2ec1ebf37dd27385227
  */
 class Router
 {
@@ -117,11 +121,19 @@ class Router
                 $action = $this->params['action'];
                 $action = $this->convertToCamelCase($action);
 
+<<<<<<< HEAD
                 if (preg_match('/action$/i', $action) == 0) {
                     $controller_object->$action();
 
                 } else {
                     throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
+=======
+                if (is_callable([$controller_object, $action])) {
+                    $controller_object->$action();
+
+                } else {
+                    throw new \Exception("Method $action (in controller $controller) not found");
+>>>>>>> 40af4e4a56966a0ccb88f2ec1ebf37dd27385227
                 }
             } else {
                 throw new \Exception("Controller class $controller not found");

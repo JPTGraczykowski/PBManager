@@ -1,5 +1,6 @@
 # Remove the question mark from the request but maintain the query string
 RewriteEngine On
+<<<<<<< HEAD
 
 # Uncomment the following line if your public folder isn't the web server's root
 # RewriteBase /
@@ -7,4 +8,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-l
+=======
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+>>>>>>> 40af4e4a56966a0ccb88f2ec1ebf37dd27385227
 RewriteRule ^(.*)$ index.php?$1 [L,QSA]
