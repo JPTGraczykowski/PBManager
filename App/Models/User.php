@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use \App\Token;
 
 /**
  * Example user model
@@ -11,13 +12,6 @@ use PDO;
  */
 class User extends \Core\Model
 {
-
-    /**
-     * Get all the users as an associative array
-     *
-     * @return array
-     */
-
     public $errors = [];
 
     public function __construct($data = [])
@@ -35,7 +29,7 @@ class User extends \Core\Model
 
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'INSERT INTO users (username, email, password)
+            $sql = 'INSERT INTO users (name, email, password_hash)
                     VALUES (:name, :email, :password_hash)';
 
             $db = static::getDB();
@@ -80,6 +74,20 @@ class User extends \Core\Model
         }
     }
 
+
+    public static function authenticate($email, $password)
+    {
+        $user = static::findByEmail($email);
+
+        if($user) {
+            if (password_verify($password, $user->password_hash)) {
+                return $user;
+            }
+        }
+        return false;
+    }
+
+
     public static function emailExists($email)
     {
         return static::findByEmail($email) !== false;
@@ -101,10 +109,89 @@ class User extends \Core\Model
         return $stmt->fetch();
     }
 
-    public static function getAll()
+    public static function findById($id)
     {
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
         $db = static::getDB();
-        $stmt = $db->query('SELECT id, name FROM users');
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
+    public function rememberLogin()
+    {
+        $token = new Token();
+        $hashed_token = $token->getHash();
+        $this->remember_token = $token->getValue();
+
+        //$expiry_timestamp = time() + 60 * 60 * 24 * 30;  // 30 days from now
+        $this->expiry_timestamp = time() + 60 * 60 * 24 * 30;  // 30 days from now
+
+        $sql = 'INSERT INTO remembered_logins (token_hash, user_id, expires_at)
+                VALUES (:token_hash, :user_id, :expires_at)';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':token_hash', $hashed_token, PDO::PARAM_STR);
+        $stmt->bindValue(':user_id', $this->id, PDO::PARAM_INT);
+        //$stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $expiry_timestamp), PDO::PARAM_STR);
+        $stmt->bindValue(':expires_at', date('Y-m-d H:i:s', $this->expiry_timestamp), PDO::PARAM_STR);
+
+        return $stmt->execute();
+    }
+
+    
+    public function updateProfile($data)
+    {
+        $this->name = $data['name'];
+        $this->email = $data['email'];
+
+        // Only validate and update the password if a value provided
+        if ($data['password'] != '') {
+            $this->password = $data['password'];
+        }
+
+        $this->validate();
+
+        if (empty($this->errors)) {
+
+            $sql = 'UPDATE users
+                    SET name = :name,
+                        email = :email';
+
+            // Add password if it's set
+            if (isset($this->password)) {
+                $sql .= ', password_hash = :password_hash';
+            }
+
+            $sql .= "\nWHERE id = :id";
+
+
+            $db = static::getDB();
+            $stmt = $db->prepare($sql);
+
+            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+            // Add password if it's set
+            if (isset($this->password)) {
+
+                $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+                $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+
+            }
+
+            return $stmt->execute();
+        }
+
+        return false;
     }
 }
