@@ -1,0 +1,730 @@
+html {
+  height: 100%;
+}
+body {
+  background-color: #343434;
+  color: #fefefe;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 30px; /* Set same as footer's height */
+}
+
+a {
+  text-decoration: unset;
+  color: #fefefe;
+}
+
+a:hover {
+  color: #fefefe;
+  text-decoration: unset;
+}
+
+h1 {
+  font-size: 40px;
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+.siteHeader {
+  width: 100%;
+  height: 120px;
+  padding: 20px 0;
+  line-height: 200%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #118be2;
+  text-align: center;
+}
+
+@media (max-width: 592px) {
+  .siteHeader {
+    height: 200px;
+  }
+}
+
+/* ======================= start page ==================================== */
+
+.slider-outer {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.slider-inner {
+  margin-top: 20px;
+  width: 90%;
+  height: 250px;
+  display: inline-block;
+  position: relative;
+}
+
+.slider-inner img {
+  display: none;
+  width: 90%;
+  height: 100%;
+}
+
+.slider-inner img.active {
+  display: inline-block;
+}
+
+.prev,
+.next {
+  display: inline-block;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.next:hover {
+  filter: brightness(100%);
+  cursor: pointer;
+}
+
+.prev:hover {
+  filter: brightness(100%);
+  cursor: pointer;
+}
+
+.prev {
+  position: relative;
+  z-index: 100;
+  margin-right: -45px;
+  /* margin-left: 60px; */
+  filter: brightness(70%);
+  transition: all 0.2s ease-in-out;
+}
+
+.next {
+  position: relative;
+  z-index: 100;
+  filter: brightness(70%);
+  margin-left: -45px;
+}
+
+#startPageText {
+  text-align: justify;
+  margin-top: 50px;
+}
+
+/* =======================login and register =================================== */
+
+.mainPanel {
+  margin: 50px auto;
+  width: 350px;
+  height: 300px;
+}
+
+.upperPanel {
+  height: 60px;
+  width: 310px;
+  padding: 0 20px;
+}
+
+.lowerPanel {
+  height: 200px;
+  width: 350px;
+  background-color: #696969;
+  border-radius: 10px;
+  padding: 20px 0;
+}
+
+#logButtonLogin {
+  float: left;
+  width: 45%;
+  text-align: center;
+  line-height: 200%;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 30px;
+  background-color: #118be2;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+#logButtonRegister {
+  float: left;
+  width: 45%;
+  text-align: center;
+  line-height: 200%;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 30px;
+  background-color: #335873;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+#regButtonLogin {
+  float: right;
+  width: 45%;
+  height: 30px;
+  text-align: center;
+  line-height: 200%;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #335873;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+#regButtonLogin:hover {
+  background-color: #118be2;
+  cursor: pointer;
+}
+
+#regButtonRegister {
+  float: right;
+  width: 45%;
+  height: 30px;
+  text-align: center;
+  line-height: 200%;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  background-color: #118be2;
+  transition: all 0.2s ease-in-out;
+}
+
+#logButtonRegister:hover {
+  background-color: #118be2;
+  cursor: pointer;
+}
+
+.inputPanel {
+  width: 340px;
+  text-align: center;
+  height: 40px;
+  margin: 10px auto;
+}
+
+.enterEmail {
+  float: left;
+  width: 80%;
+  height: 30px;
+  font-size: 15px;
+}
+
+.enterPassword {
+  float: left;
+  width: 80%;
+  height: 30px;
+  font-size: 15px;
+}
+
+.enterName {
+  float: left;
+  width: 80%;
+  height: 30px;
+  font-size: 15px;
+}
+
+.loginButton {
+  float: left;
+  margin-top: 15px;
+  width: 250px;
+  height: 50px;
+  margin-left: 50px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 300%;
+  cursor: pointer;
+  background-color: #118be2;
+  color: #fefefe;
+}
+
+.loginButton:hover {
+  background-color: #229cf3;
+}
+
+.registerButton {
+  float: left;
+  margin-top: 15px;
+  width: 250px;
+  height: 50px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 300%;
+  cursor: pointer;
+  margin-left: 50px;
+  background-color: #118be2;
+  color: #fefefe;
+}
+
+.registerButton:hover {
+  background-color: #229cf3;
+}
+
+/* ======================= main menu =================================== */
+
+#menuPanel {
+  margin: 50px auto;
+  padding: 20px;
+  width: 90%;
+  height: 560px;
+  background-color: #696969;
+  border-radius: 10px;
+}
+
+#leftMenuPanel {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+#rightMenuPanel {
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+#headerTile {
+  height: 110px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  font-size: 25px;
+  line-height: 190%;
+  text-align: center;
+  border: 1px solid #0059c0;
+  background-color: #118be2;
+  border-radius: 10px;
+}
+
+#addIncomeTile {
+  width: 100%;
+  height: 90px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #07930a;
+  background-color: #29b61c;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+#addIncomeTile:hover {
+  background-color: #3ac72d;
+  cursor: pointer;
+}
+
+#addExpenseTile {
+  width: 100%;
+  height: 90px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #d00b0b;
+  background-color: #f00e0e;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+#addExpenseTile:hover {
+  background-color: #ff1f2f;
+  cursor: pointer;
+}
+
+#balanceTile {
+  width: 100%;
+  height: 390px;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #db900d;
+  background-color: #faad07;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+  font-size: 30px;
+  line-height: 100%;
+}
+
+#chart-icon {
+  font-size: 120px;
+  line-height: 200%;
+}
+
+@media(max-width: 992px) {
+
+  #menuPanel {
+    height: 650px;
+  }
+
+  #balanceTile {
+    margin: 0;
+    height: 90px;
+    font-size: unset;
+  }
+
+  #chart-icon {
+    font-size: 45px;
+    line-height: 100%;
+  }
+}
+
+#balanceTile:hover {
+  background-color: #ffc41f;
+  cursor: pointer;
+}
+
+#settingsTile {
+  width: 100%;
+  height: 90px;
+  margin: 0 10px 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #0355a7;
+  background-color: #0588c9;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+#settingsTile:hover {
+  background-color: #1699da;
+  cursor: pointer;
+}
+
+#logOutTile {
+  width: 100%;
+  height: 90px;
+  margin: 0 10px 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #41088a;
+  background-color: #630aac;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+#logOutTile:hover {
+  background-color: #741bbd;
+  cursor: pointer;
+}
+
+
+/* ======================= navbar =================================== */
+
+.navbar {
+  border-top: 1px solid #077bb6;
+  background-color: #118be2;
+  min-height: 60px;
+}
+
+.navbar-toggler {
+  margin-left: auto;
+}
+
+.nav-item {
+  transition: all 0.2s ease-in-out;
+  line-height: 300%;
+  min-width: 170px;
+  border-right: 1px solid #077bb6;
+}
+
+@media (max-width: 992px) {
+  .nav-item {
+    border-right: 0;
+    border-bottom: 1px solid #077bb6;
+  }
+}
+
+.nav-item:last-child {
+  border: 0;
+}
+
+/* ======================= add income / expense =================================== */
+
+#incomePanel {
+  margin: 50px auto;
+  width: 350px;
+}
+
+#upperIncomePanel {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  background-color: #29b61c;
+  border-radius: 10px;
+}
+
+#upperIncomePanelText {
+  float: left;
+  width: 75%;
+  height: 80px;
+  background-color: #29b61c;
+  text-align: center;
+  font-size: 30px;
+  line-height: 250%;
+  border-radius: 10px;
+}
+
+#lowerIncomePanel {
+  width: 100%;
+  height: 320px;
+  border-radius: 10px;
+  border-top: 0;
+  background-color: #696969;
+  padding: 20px;
+}
+
+
+#expensePanel {
+  margin: 50px auto;
+  width: 350px;
+}
+
+#upperExpensePanel {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  background-color: #f00e0e;
+  border-radius: 10px;
+}
+
+#upperExpensePanelText {
+  float: left;
+  width: 75%;
+  height: 80px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 250%;
+  border-radius: 10px;
+}
+
+#lowerExpensePanel {
+  width: 100%;
+  height: 380px;
+  border-radius: 10px;
+  border-top: 0;
+  background-color: #696969;
+  padding: 20px;
+}
+
+.enterAmount {
+  float: left;
+  width: 80%;
+  height: 30px;
+}
+
+.enterDate {
+  float: left;
+  width: 80%;
+  height: 30px;
+}
+
+.enterItem {
+  float: left;
+  width: 80%;
+  height: 35px;
+}
+
+.enterPaymentMethod {
+  float: left;
+  width: 80%;
+  height: 35px;
+}
+
+.enterComment {
+  float: left;
+  width: 80%;
+  height: 30px;
+}
+
+.addButton {
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 20px;
+  width: 100px;
+  height: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #29b61c;
+}
+
+.addButton:hover {
+  background-color: #3ac72d;
+}
+
+.cancelButton {
+  margin-top: 15px;
+  margin-left: 20px;
+  width: 100px;
+  height: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #f00e0e;
+}
+
+.cancelButton:hover {
+  background-color: #ff1f2f;
+}
+
+/* =======================  balance site =================================== */
+
+#setDateRangeForm {
+  background-color:  #696969;
+  margin: 30px auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 350px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+#setDateRangeList {
+  list-style: none;
+  margin-bottom: 15px;
+  border: 1px solid #696969;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+#setDateRangeFormFooter {
+  text-align: center;
+}
+
+.dateRangeFormButton {
+  width: 120px;
+  margin: 10px;
+  background-color: #faad07;
+  border: 1px solid black;
+  color: #fefefe;
+}
+
+.modal-title {
+  color: black;
+  font-size: 20px;
+}
+
+.transactionTable {
+  margin-top: 50px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.transTableHeader {
+  text-align: center;
+  font-size: 30px;
+  line-height: 175%;
+  width: 100%;
+  height: 60px;
+  background-color: #faad07;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.transTableColumn {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.transTableColumnHeader {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  line-height: 200%;
+  background-color: #faad07;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.transTableRows {
+  list-style-type: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  background-color: #696969;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.transTableRows > li {
+  width: 100%;
+  border-bottom: 1px solid black;
+  height: 30px;
+  line-height: 175%;
+  text-align: center;
+}
+
+.transTableRows > li:last-child {
+  border: 0;
+}
+
+.transTableFooter {
+  clear: both;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  line-height: 150%;
+  background-color: #faad07;
+}
+
+#balanceWindow {
+  height: 120px;
+  width: 100%;
+  margin: 0 auto 20px auto;
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 25px;
+  line-height: 200%;
+  text-align: center;
+  padding: 0 10px;
+}
+
+#piechart_3d_incomes {
+  height: 440px;
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid black;
+  
+}
+
+#piechart_3d_expenses {
+  height: 440px;
+  width: 100%;
+  margin: 20px 0;
+  border: 1px solid black;
+  
+}
+
+/* ============== site footer =========== */
+
+.siteFooter {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  line-height: 200%;
+  background-color: #118be2;
+}
+
+@media (max-width: 450px) {
+  .siteFooter {
+    height: 90px;
+  }
+}

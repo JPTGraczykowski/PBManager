@@ -4,13 +4,62 @@
 
 {% block body %}
 
-    <h1>Welcome</h1>
+    <div style="background-color: #696969; padding: 15px; margin: 30px 0; border-radius: 10px;">
+        <div class="row">
+            <div class="col-lg-6">
+            <div id="startPageText">
+                <p>
+                Peronal Budget Manager is a tool that helps you with your daily financial operations. Have your money
+                under
+                control. With this app you can:
+                </p>
+                <ul>
+                <li>add incomes</li>
+                <li>add expenses</li>
+                <li>check balance</li>
+                <li>get financial analysis</li>
+                </ul>
+                <p>
+                All finances are personalized with privates accounts. With the app you can see what you spend money on and
+                analize any period of time.
 
-    {% if current_user %}
-        Hello {{ current_user.name }}!
-        <a href="login/destroy">Log out</a>.
-    {% else %}
-        <a href="signup/new">Sign up</a> or <a href="login/new">log in</a>.
-    {% endif %}
+                Login to Personal Budget Manager or if you have not account yet sign up freely and join to us. This may
+                change
+                your life or at least save some money for holiday.
+                </p>
+            </div>
+            </div>
+            <div class="col-lg-6">
+            <div class="slider-outer">
+                <b>Lets check Personal Budget Manager!</b>
+                <br />
+                <img src="./img/arrow-left.png" class="prev" alt="Previous">
+                <div class="slider-inner">
+                <img src="./img/menu.png" class="active" alt="Screenshot 1." />
+                <img src="./img/add_income.png" alt="Screenshot 2." />
+                <img src="./img/charts.png" alt="Screenshot 3." />
+                </div>
+                <img src="./img/arrow-right.png" class="next" alt="Next">
+            </div>
+            </div>
+        </div>
+        <div class="row">  
+            <div class="col-sm-6">
+                <a href="login.php">
+                    <div class="loginButton" style="border-radius: 10px; margin-bottom: 30px; width: 80%;">
+                    LOGIN
+                    </div>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="register.php">
+                    <div class="registerButton" style="border-radius: 10px; margin-bottom: 30px; width: 80%;">
+                    REGISTER
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="/js/slider.js"></script>
 
 {% endblock %}
