@@ -4,25 +4,49 @@
 
 {% block body %}
 
-    <h1>Log in</h1>
+    <div class="mainPanel">
 
-    <form action="/login/create" method="post">
-        <div class="form-group">
-            <label for="inputEmail">Email address</label>
-            <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ email }}"
-            class="form-control"/>
+        <div class="upperPanel">
+            <div class="row">
+                <div class="col">
+                    <div id="logButtonLogin">
+                        LOGIN
+                    </div>
+                </div>
+                <div class="col">
+                    <a href="/signup/new">
+                        <div id="regButtonLogin">
+                            REGISTER
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="inputPassword">Password</label>
-            <input type="password" id="inputPassword" name="password" placeholder="Password"
-            class="form-control"/>
+
+        <div class="lowerPanel">
+            
+            <form method="post" action="/login/create">
+
+                <div class="inputPanel">
+                    <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus value="{{ user.email }}"
+                    class="form-control"/>
+                </div>
+
+                <div class="inputPanel">
+                    <input type="password" id="inputPassword" name="password" placeholder="Password"
+                    class="form-control"/>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}> Remember me
+                    </label>
+                </div>
+
+                <input type="submit" class="loginButton" value="LOGIN">
+
+            </form>
         </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}> Remember me
-            </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Log in</button>
-    </form>
+    </div>
 
 {% endblock %}

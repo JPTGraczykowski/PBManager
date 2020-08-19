@@ -125,17 +125,17 @@ h3 {
 .mainPanel {
   margin: 50px auto;
   width: 350px;
-  height: 300px;
+  height: 350px;
 }
 
 .upperPanel {
   height: 60px;
-  width: 310px;
+  width: 350px;
   padding: 0 20px;
 }
 
 .lowerPanel {
-  height: 200px;
+  height: 250px;
   width: 350px;
   background-color: #696969;
   border-radius: 10px;
@@ -143,37 +143,31 @@ h3 {
 }
 
 #logButtonLogin {
-  float: left;
-  width: 45%;
   text-align: center;
   line-height: 200%;
   font-weight: 600;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 30px;
+  height: 50px;
   background-color: #118be2;
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
 }
 
 #logButtonRegister {
-  float: left;
-  width: 45%;
   text-align: center;
   line-height: 200%;
   font-weight: 600;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 30px;
+  height: 50px;
   background-color: #335873;
   border-radius: 10px;
   transition: all 0.2s ease-in-out;
 }
 
 #regButtonLogin {
-  float: right;
-  width: 45%;
-  height: 30px;
+  height: 50px;
   text-align: center;
   line-height: 200%;
   font-weight: 600;
@@ -190,9 +184,7 @@ h3 {
 }
 
 #regButtonRegister {
-  float: right;
-  width: 45%;
-  height: 30px;
+  height: 50px;
   text-align: center;
   line-height: 200%;
   font-weight: 600;
@@ -215,27 +207,6 @@ h3 {
   margin: 10px auto;
 }
 
-.enterEmail {
-  float: left;
-  width: 80%;
-  height: 30px;
-  font-size: 15px;
-}
-
-.enterPassword {
-  float: left;
-  width: 80%;
-  height: 30px;
-  font-size: 15px;
-}
-
-.enterName {
-  float: left;
-  width: 80%;
-  height: 30px;
-  font-size: 15px;
-}
-
 .loginButton {
   float: left;
   margin-top: 15px;
@@ -244,10 +215,11 @@ h3 {
   margin-left: 50px;
   font-weight: 600;
   text-align: center;
-  line-height: 300%;
+  line-height: 250%;
   cursor: pointer;
   background-color: #118be2;
   color: #fefefe;
+  border-radius: 10px;
 }
 
 .loginButton:hover {
@@ -261,15 +233,20 @@ h3 {
   height: 50px;
   font-weight: 600;
   text-align: center;
-  line-height: 300%;
+  line-height: 250%;
   cursor: pointer;
   margin-left: 50px;
   background-color: #118be2;
   color: #fefefe;
+  border-radius: 10px;
 }
 
 .registerButton:hover {
   background-color: #229cf3;
+}
+
+.checkbox {
+  padding: 0 10px;
 }
 
 /* ======================= main menu =================================== */
