@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}UserMenu{% endblock %}
+
+{% block body %}
+
+
+  <div id="menuPanel">
+    <div id="headerTile">
+      Hi {{ user.name }}! What are you going to do?
+    </div>
+      <div class="row">
+      <div class="col-lg-6">
+        <div id="leftMenuPanel">
+          <a href="addIncome.php">
+            <div id="addIncomeTile">
+              <!-- <span class="material-icons" style="font-size: 45px;">
+                add_circle
+              </span> 
+              <br /> -->
+              Add income
+            </div>
+          </a>
+          <a href="addExpense.php">
+            <div id="addExpenseTile">
+              <!-- <span class="material-icons" style="font-size: 45px;">
+                remove_circle
+              </span>
+              <br /> -->
+              Add expense
+            </div>
+          </a>
+            <div id="settingsTile">
+              <!-- <span class="material-icons" style="font-size: 45px;">
+                settings
+              </span>
+              <br /> -->
+              Settings
+            </div>
+          <a href="/login/destroy">
+            <div id="logOutTile">
+              <!-- <span class="material-icons" style="font-size: 45px;">
+                arrow_back
+              </span>
+              <br /> -->
+              Log out
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div id="rightMenuPanel">
+          <a href="balance.php">
+            <div id="balanceTile">
+              <!-- <span class="material-icons" id="chart-icon">
+                insert_chart
+              </span>
+              <br /> -->
+              Balance
+            </div>
+          </a>
+        </div>
+      </div>      
+    </div>
+  </div>
+
+
+{% endblock %}
