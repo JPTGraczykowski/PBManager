@@ -125,7 +125,7 @@ h3 {
 .mainPanel {
   margin: 50px auto;
   width: 350px;
-  height: 350px;
+  height: 400px;
 }
 
 .upperPanel {
@@ -135,7 +135,6 @@ h3 {
 }
 
 .lowerPanel {
-  height: 250px;
   width: 350px;
   background-color: #696969;
   border-radius: 10px;
@@ -204,7 +203,7 @@ h3 {
   width: 340px;
   text-align: center;
   height: 40px;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .loginButton {

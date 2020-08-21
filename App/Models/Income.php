@@ -44,6 +44,10 @@ class Income extends \Core\Model
             $this->errors[] = 'Amount is required';
         }
 
+        if ($this->amount <= 0 || $this->amount > 99999999.99) {
+            $this->errors[] = 'Please input amount between 0 and 100 mln.';
+        }
+
         $this->amount = str_replace(',', '.', $this->amount);
 
         if (filter_var($this->amount, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) === false) {
