@@ -2,6 +2,12 @@
 
 {% block title %}Add Income{% endblock %}
 
+{% block footer %}
+
+<script src="/js/getTodayDate.js"></script>
+
+{% endblock %}
+
 {% block body %}
 
 <div id="incomePanel">
@@ -14,7 +20,7 @@
     </span> -->
   </div>
 
-  <div id="lowerIncomePanel">
+  <div class="lowerPanel" style="height: 300px;">
     
     <form method="post" action="/IncomeController/create">
 
@@ -24,11 +30,11 @@
       </div>
 
       <div class="inputPanel">
-        <input type="date" name="date" class="form-control" value="{{ income.date }}" />
+        <input type="date" name="date" class="form-control" id="enterDate" value="{{ income.date }}" />
       </div>
 
       <div class="inputPanel">
-        <select class="enterItem" name="income_category_id">
+        <select class="form-control" name="income_category_id">
           {% for category in income_categories %}
             <option value="{{ category[0]}}">{{ category[1] }}</option>';
           {% endfor %}
@@ -39,6 +45,7 @@
         <input type="text" name="comment" class="form-control"
           placeholder="Add comment to the income" value="{{ income.comment }}" />
       </div>
+      
       <input type="submit" class="addButton" value="ADD">
       <a href="/usermenu/show"><input type="button" class="cancelButton" value="CANCEL"></a>
     </form>
