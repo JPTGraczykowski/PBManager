@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Income{% endblock %}
+
+{% block body %}
+
+<div id="incomePanel">
+  <div id="upperIncomePanel">
+    <div id="upperIncomePanelText">
+      Adding Income
+    </div>
+    <!-- <span class="material-icons" style="font-size: 60px; line-height: 125%;float: left;">
+      add_circle
+    </span> -->
+  </div>
+
+  <div id="lowerIncomePanel">
+    
+    <form method="post" action="/IncomeController/create">
+
+      <div class="inputPanel">
+        <input type="number" name="amount" step="0.01" placeholder="0.00" min="0.01" max="99999999.99"
+        class="form-control" value="{{ income.amount }}" />
+      </div>
+
+      <div class="inputPanel">
+        <input type="date" name="date" class="form-control" value="{{ income.date }}" />
+      </div>
+
+      <div class="inputPanel">
+        <select class="enterItem" name="income_category_id">
+          {% for category in income_categories %}
+            <option value="{{ category[0]}}">{{ category[1] }}</option>';
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="inputPanel">
+        <input type="text" name="comment" class="form-control"
+          placeholder="Add comment to the income" value="{{ income.comment }}" />
+      </div>
+      <input type="submit" class="addButton" value="ADD">
+      <a href="/usermenu/show"><input type="button" class="cancelButton" value="CANCEL"></a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
