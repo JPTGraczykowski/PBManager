@@ -194,4 +194,19 @@ class User extends \Core\Model
 
         return false;
     }
+
+
+    public static function getUserIdByEmail($user_email)
+    {
+        $sql = 'SELECT id FROM users WHERE email = :user_email';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':new_user_email', $user_email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_COLUMN, 0);
+    }
 }

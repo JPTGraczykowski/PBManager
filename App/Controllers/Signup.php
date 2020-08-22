@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\User;
+use \App\Models\IncomeCategoryAssignedToUser;
 
 class Signup extends \Core\Controller
 {
@@ -19,6 +20,7 @@ class Signup extends \Core\Controller
         $user = new User($_POST);
 
         if ($user->save()) {
+            IncomeCategoryAssignedToUser::assignDefaultCategories($user->email);
             $this->redirect('/signup/success');
         } else {
             View::renderTemplate('Signup/new.html', [
