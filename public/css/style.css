@@ -125,7 +125,7 @@ h3 {
 .mainPanel {
   margin: 50px auto;
   width: 350px;
-  height: 350px;
+  height: 400px;
 }
 
 .upperPanel {
@@ -135,7 +135,6 @@ h3 {
 }
 
 .lowerPanel {
-  height: 250px;
   width: 350px;
   background-color: #696969;
   border-radius: 10px;
@@ -204,7 +203,7 @@ h3 {
   width: 340px;
   text-align: center;
   height: 40px;
-  margin: 10px auto;
+  margin: 20px auto;
 }
 
 .loginButton {
@@ -253,6 +252,7 @@ h3 {
 
 #menuPanel {
   margin: 50px auto;
+  margin-bottom: auto;
   padding: 20px;
   width: 90%;
   height: 560px;
@@ -437,7 +437,7 @@ h3 {
 
 #upperIncomePanel {
   width: 100%;
-  height: 80px;
+  height: 60px;
   margin-bottom: 10px;
   background-color: #29b61c;
   border-radius: 10px;
@@ -446,23 +446,13 @@ h3 {
 #upperIncomePanelText {
   float: left;
   width: 75%;
-  height: 80px;
+  height: 60px;
   background-color: #29b61c;
   text-align: center;
-  font-size: 30px;
-  line-height: 250%;
+  font-size: 28px;
+  line-height: 225%;
   border-radius: 10px;
 }
-
-#lowerIncomePanel {
-  width: 100%;
-  height: 320px;
-  border-radius: 10px;
-  border-top: 0;
-  background-color: #696969;
-  padding: 20px;
-}
-
 
 #expensePanel {
   margin: 50px auto;
@@ -487,54 +477,15 @@ h3 {
   border-radius: 10px;
 }
 
-#lowerExpensePanel {
-  width: 100%;
-  height: 380px;
-  border-radius: 10px;
-  border-top: 0;
-  background-color: #696969;
-  padding: 20px;
-}
-
-.enterAmount {
-  float: left;
-  width: 80%;
-  height: 30px;
-}
-
-.enterDate {
-  float: left;
-  width: 80%;
-  height: 30px;
-}
-
-.enterItem {
-  float: left;
-  width: 80%;
-  height: 35px;
-}
-
-.enterPaymentMethod {
-  float: left;
-  width: 80%;
-  height: 35px;
-}
-
-.enterComment {
-  float: left;
-  width: 80%;
-  height: 30px;
-}
-
 .addButton {
+  margin-left: 35px;
   margin-top: 15px;
-  margin-left: 30px;
-  margin-right: 20px;
-  width: 100px;
+  width: 125px;
   height: 40px;
   font-weight: 600;
   cursor: pointer;
   background-color: #29b61c;
+  border-radius: 10px;
 }
 
 .addButton:hover {
@@ -542,13 +493,13 @@ h3 {
 }
 
 .cancelButton {
-  margin-top: 15px;
-  margin-left: 20px;
-  width: 100px;
+  margin-left: 25px;
+  width: 125px;
   height: 40px;
   font-weight: 600;
   cursor: pointer;
   background-color: #f00e0e;
+  border-radius: 10px;
 }
 
 .cancelButton:hover {
