@@ -203,7 +203,7 @@ class User extends \Core\Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindValue(':new_user_email', $user_email, PDO::PARAM_STR);
+        $stmt->bindValue(':user_email', $user_email, PDO::PARAM_STR);
 
         $stmt->execute();
 

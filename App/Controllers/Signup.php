@@ -4,7 +4,8 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Models\User;
-use \App\Models\IncomeCategoryAssignedToUser;
+use \App\Models\IncomeCategoriesAssignedToUser;
+use \App\Models\ExpenseCategoriesAssignedToUser;
 
 class Signup extends \Core\Controller
 {
@@ -18,9 +19,12 @@ class Signup extends \Core\Controller
     public function createAction()
     {
         $user = new User($_POST);
+        $new_user_email = $user->email;
 
         if ($user->save()) {
-            IncomeCategoryAssignedToUser::assignDefaultCategories($user->email);
+            
+            IncomeCategoriesAssignedToUser::assignDefaultCategories($new_user_email);
+            ExpenseCategoriesAssignedToUser::assignDefaultCategories($new_user_email);
             $this->redirect('/signup/success');
         } else {
             View::renderTemplate('Signup/new.html', [
