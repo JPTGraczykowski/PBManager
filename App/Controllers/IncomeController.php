@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\Income;
-use App\Models\IncomeCategoryAssignedToUser;
+use App\Models\IncomeCategoriesAssignedToUser;
 use App\Flash;
 
 class IncomeController extends Authenticated
@@ -15,7 +15,7 @@ class IncomeController extends Authenticated
     {
         parent::before();
 
-        $this->income_categories = IncomeCategoryAssignedToUser::getCategories();
+        $this->income_categories = IncomeCategoriesAssignedToUser::getCategories();
     }
 
   public function newAction()

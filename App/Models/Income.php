@@ -6,6 +6,8 @@ use PDO;
 
 class Income extends \Core\Model
 {
+    public $errors = [];
+    
     public function __construct($data = [])
     {
         foreach($data as $key => $value) {
@@ -20,7 +22,7 @@ class Income extends \Core\Model
         if (empty($this->errors)) {
 
             $sql = 'INSERT INTO incomes (user_id, income_category_assigned_to_user_id, amount, date_of_income, income_comment)
-             VALUES (:user_id, :income_category_id, :amount, :date_of_income, :income_comment)';
+                    VALUES (:user_id, :income_category_id, :amount, :date_of_income, :income_comment)';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);

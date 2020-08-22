@@ -6,7 +6,7 @@ use \App\Auth;
 use \App\Models\User;
 use PDO;
 
-class IncomeCategoryAssignedToUser extends \Core\Model
+class IncomeCategoriesAssignedToUser extends \Core\Model
 {
 
   public static function getCategories()
@@ -34,7 +34,7 @@ class IncomeCategoryAssignedToUser extends \Core\Model
     $db = static::getDB();
     $stmt = $db->prepare($sql);
 
-    for ($i=0; $i<4; $i++)
+    for ($i=0; $i<count($default_income_categories); $i++)
     { 
       $stmt->bindValue(':user_id', $new_user_id, PDO::PARAM_INT);
       $stmt->bindValue(':name', $default_income_categories[$i], PDO::PARAM_STR);
