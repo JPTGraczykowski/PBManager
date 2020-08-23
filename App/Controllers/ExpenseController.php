@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Core\View;
 use App\Models\Expense;
 use App\Models\ExpenseCategoriesAssignedToUser;
+use App\Models\PaymentMethodsAssignedToUser;
 use App\Flash;
 
 class ExpenseController extends Authenticated
@@ -16,12 +17,14 @@ class ExpenseController extends Authenticated
         parent::before();
 
         $this->expense_categories = ExpenseCategoriesAssignedToUser::getCategories();
+        $this->payment_methods = PaymentMethodsAssignedToUser::getPaymentMethods();
     }
 
   public function newAction()
   {
     View::renderTemplate('Expense/new.html', [
-      'expense_categories' => $this->expense_categories
+      'expense_categories' => $this->expense_categories,
+      'payment_methods' => $this->payment_methods
       ]);
   }
 
@@ -36,6 +39,7 @@ class ExpenseController extends Authenticated
       Flash::addMessage('Unsuccessful adding expense', Flash::WARNING);
       View::renderTemplate('/Expense/new.html', [
           'expense_categories' => $this->expense_categories,
+          'payment_methods' => $this->payment_methods,
           'expense' => $expense
       ]);
   }

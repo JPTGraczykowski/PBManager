@@ -49,7 +49,7 @@
       </span> -->
     </div>
 
-    <div class="lowerPanel" style="height: 355px;">
+    <div class="lowerPanel" style="height: 415px;">
 
       <form method="post" action="/ExpenseController/create" id="formAddExpense">
 
@@ -69,17 +69,13 @@
           </select>
         </div>
 
-        <!-- <div class="inputPanel">
-          <i class="icon-pencil"></i>
-          <select class="enterPaymentMethod" name="payment_method">
-          <?php
-              for($i=0; $i<$paymentMethodsNumber; $i++)
-              {
-              echo '<option value="'.$paymentMethods[$i][0].'">'.$paymentMethods[$i][1].'</option>';
-              }
-            ?>
+        <div class="inputPanel">
+          <select class="form-control" name="payment_method_id">
+            {% for method in payment_methods %}
+            <option value="{{ method[0]}}">{{ method[1] }}</option>';
+          {% endfor %}
           </select>
-        </div> -->
+        </div>
 
         <div class="inputPanel">
           <input type="text" name="comment" class="form-control"

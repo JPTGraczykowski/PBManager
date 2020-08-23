@@ -6,6 +6,7 @@ use \Core\View;
 use \App\Models\User;
 use \App\Models\IncomeCategoriesAssignedToUser;
 use \App\Models\ExpenseCategoriesAssignedToUser;
+use \App\Models\PaymentMethodsAssignedToUser;
 
 class Signup extends \Core\Controller
 {
@@ -22,9 +23,9 @@ class Signup extends \Core\Controller
         $new_user_email = $user->email;
 
         if ($user->save()) {
-            
             IncomeCategoriesAssignedToUser::assignDefaultCategories($new_user_email);
             ExpenseCategoriesAssignedToUser::assignDefaultCategories($new_user_email);
+            PaymentMethodsAssignedToUser::assignDefaultPaymentMethods($new_user_email);
             $this->redirect('/signup/success');
         } else {
             View::renderTemplate('Signup/new.html', [
