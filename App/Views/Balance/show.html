@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+
+{% block title %}Balance{% endblock %}
+
+{% block footer %}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="/js/balance.js"></script>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col">
+    <div id="setDateRangeForm">
+      <form method="post" action="/balance/show">
+        <ul id="setDateRangeList">
+          <li>
+            <span style="font-size: 20px;">Set date range of your transactions:</span>
+          </li>
+          <hr style="background-color: #474747;" />
+          <li>
+          <input type="radio" class="timePeriodRadio" id="currentMonthRadio" name="time_period" value="current_month">
+          <label for="currentMonthRadio">Current Month</label>
+          </li>
+          <li>
+          <input type="radio" class="timePeriodRadio" id="previousMonthRadio" name="time_period" value="previous_month">
+          <label for="previousMonthRadio">Previous Month</label>
+          <li>
+          <input type="radio" class="timePeriodRadio" id="currentYearRadio" name="time_period" value="current_year">
+          <label for="currentYearRadio">Current Year</label>
+          </li>
+          <li>
+          <input type="radio" class="timePeriodRadio" id="totalTimeRadio" name="time_period" value="total_time">
+          <label for="totalTimeRadio">Total Time</label>
+          </li>
+          <li>
+          <button type="button" class="btn btn-primary" style="background-color: #faad07; border: 1px solid black;" data-toggle="modal" data-target="#dateModal">Other Date Range</button>
+          </li>
+        </ul>
+        <div id="setDateRangeFormFooter">
+          <button type="submit"  class="btn btn-primary" style="width: 120px; margin: 10px; background-color: #faad07; border: 1px solid black;">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal with other date range -->
+
+<div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalLabel">Set a date range:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post">
+        <div class="modal-body">
+          <div id="dateRangeSection">
+            <span style="color: black;"> Enter start date: </span>
+            <div class="inputPanel">
+              <i class="icon-calendar"></i><input type="date" class="enterDate" name="start_date">
+            </div>
+            <span style="color: black;"> Enter end date: </span>
+            <div class="inputPanel">
+              <i class="icon-calendar"></i><input type="date" class="enterDate" name="end_date">
+            </div>
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<section>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="transactionTable">
+      <header>
+        <div class=" transTableHeader">
+          Incomes
+        </div>
+      </header>
+      <div class="row">
+        <div class="col-6">
+          <div class="transTableColumn">
+            <div class="transTableColumnHeader">
+              Item
+            </div>
+            <ul class="transTableRows" id="incomesItems">
+              {% for income in incomes %}
+                {% for category, amount in income %}
+                  <li>{{ category }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="transTableColumn">
+            <div class="transTableColumnHeader">
+              Amount
+            </div>
+            <ul class="transTableRows" id="incomes">
+              {% for income in incomes %}
+                {% for category, amount in income %}
+                  <li>{{ amount }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div> 
+      </div>
+      <footer>
+        <div class="transTableFooter" id="incomesSum">
+          {{ sum_of_incomes }}
+        </div>
+      </footer>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="transactionTable">
+      <header>
+        <div class="transTableHeader">
+          Expenses
+        </div>
+      </header>
+      <div class="row">
+        <div class="col-6">
+          <div class="transTableColumn">
+            <div class="transTableColumnHeader">
+              Item
+            </div>
+            <ul class="transTableRows" id="expensesItems">
+              {% for expense in expenses %}
+                {% for category, amount in expense %}
+                  <li>{{ category }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="transTableColumn">
+            <div class="transTableColumnHeader">
+              Amount
+            </div>
+            <ul class="transTableRows" id="expenses">
+              {% for expense in expenses %}
+                {% for category, amount in expense %}
+                  <li>{{ amount }}</li>
+                {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>  
+      </div>
+      <footer>
+        <div class="transTableFooter" id="expenseSum">
+          {{ sum_of_expenses }}
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+</section>
+<div style="clear: both;"></div>
+<section>
+<div id="balanceWindow" onload=getBalance()>
+  Your balance is:
+</div>
+</section>
+<section id="charts">
+<div class="row">
+  <div class="col-xl-6">
+    <div id="piechart_3d_incomes">
+    </div>
+  </div>
+  <div class="col-xl-6">
+    <div id="piechart_3d_expenses">
+    </div>
+  </div>
+</div>
+</section>
+
+{% endblock %}

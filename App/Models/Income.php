@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use \App\DateHelper;
 use PDO;
 
 class Income extends \Core\Model
@@ -72,4 +73,23 @@ class Income extends \Core\Model
         }
         
     }
+
+    public static function getIncomesAssignedToUser($start_date, $end_date)
+    {
+    $sql = 'SELECT * FROM incomes WHERE user_id = :user_id AND date_of_income BETWEEN :start_date AND :end_date';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    $start_date = 
+
+    $stmt->bindValue('user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindValue('start_date', $start_date, PDO::PARAM_STR);
+    $stmt->bindValue('end_date', $end_date, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+    }
+
 }

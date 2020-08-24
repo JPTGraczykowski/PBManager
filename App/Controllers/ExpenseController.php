@@ -13,12 +13,12 @@ class ExpenseController extends Authenticated
   public $expense_categories;
 
   protected function before()
-    {
-        parent::before();
+  {
+      parent::before();
 
-        $this->expense_categories = ExpenseCategoriesAssignedToUser::getCategories();
-        $this->payment_methods = PaymentMethodsAssignedToUser::getPaymentMethods();
-    }
+      $this->expense_categories = ExpenseCategoriesAssignedToUser::getCategories();
+      $this->payment_methods = PaymentMethodsAssignedToUser::getPaymentMethods();
+  }
 
   public function newAction()
   {
