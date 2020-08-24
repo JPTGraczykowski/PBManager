@@ -66,7 +66,24 @@ class Expense extends \Core\Model
         // comment
         if (strlen($this->comment) > 100) {
             $this->errors[] = 'Comment must be shorter than 100 characters';
-        }
-        
+        }   
+    }
+
+    public static function getExpensesAssignedToUser($start_date, $end_date)
+    {
+    $sql = 'SELECT * FROM expenses WHERE user_id = :user_id AND date_of_expense BETWEEN :start_date AND :end_date';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    $start_date = 
+
+    $stmt->bindValue('user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+    $stmt->bindValue('start_date', $start_date, PDO::PARAM_STR);
+    $stmt->bindValue('end_date', $end_date, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll();
     }
 }
