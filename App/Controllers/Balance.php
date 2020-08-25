@@ -35,7 +35,7 @@ class Balance extends Authenticated
 
   public function showAction()
   {
-    View::renderTemplate('balance/show.html', [
+    View::renderTemplate('Balance/show.html', [
       'start_date' => $this->start_date,
       'end_date' => $this->end_date,
       'incomes' => $this->incomes_in_categories,

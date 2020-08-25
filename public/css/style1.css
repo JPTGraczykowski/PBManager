@@ -123,7 +123,7 @@ h3 {
 /* =======================login and register =================================== */
 
 .mainPanel {
-  margin: 50px auto;
+  margin: 100px auto;
   width: 350px;
   height: 400px;
 }
@@ -139,6 +139,7 @@ h3 {
   background-color: #696969;
   border-radius: 10px;
   padding: 20px 0;
+  margin-bottom: 50px;
 }
 
 #logButtonLogin {
@@ -252,7 +253,7 @@ h3 {
 
 #menuPanel {
   margin: 50px auto;
-  margin-bottom: auto;
+  margin-bottom: 30px;
   padding: 20px;
   width: 90%;
   height: 560px;
@@ -647,5 +648,9 @@ h3 {
 @media (max-width: 450px) {
   .siteFooter {
     height: 90px;
+  }
+
+  #menuPanel {
+    margin-bottom: 100px;
   }
 }
