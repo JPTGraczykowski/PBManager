@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use \Core\View;
-use App\Auth;
+use \App\Auth;
 
 /**
  * Home controller
@@ -21,7 +21,7 @@ class Home extends \Core\Controller
     public function indexAction()
     {
         if (Auth::getUser()) {
-            $this->redirect('Profile/show.html');
+            $this->redirect('/UserMenu/show');
         } else {
             View::renderTemplate('Home/index.html');
         }
