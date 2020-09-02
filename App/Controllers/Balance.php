@@ -18,8 +18,8 @@ class Balance extends Authenticated
   public $end_date;
   public $incomes;
   public $expenses;
-  public $incomes_in_categories;
-  public $expenses_in_categories;
+  public $incomes_grouped_to_categories;
+  public $expenses_grouped_to_categories;
 
   protected function before()
   {
@@ -27,8 +27,8 @@ class Balance extends Authenticated
       $this->setDateRange();
       $this->incomes = Income::getIncomesAssignedToUser($this->start_date, $this->end_date);
       $this->expenses = Expense::getExpensesAssignedToUser($this->start_date, $this->end_date);
-      $this->incomes_in_categories = $this->getIncomesInCategories();
-      $this->expenses_in_categories = $this->getExpensesInCategories();
+      $this->incomes_grouped_to_categories = $this->getIncomesGroupedToCategories();
+      $this->expenses_grouped_to_categories = $this->getExpensesGroupedToCategories();
       $this->sum_of_incomes = $this->sumUpGenerally($this->incomes);
       $this->sum_of_expenses = $this->sumUpGenerally($this->expenses);
   }
@@ -38,8 +38,8 @@ class Balance extends Authenticated
     View::renderTemplate('Balance/show.html', [
       'start_date' => $this->start_date,
       'end_date' => $this->end_date,
-      'incomes' => $this->incomes_in_categories,
-      'expenses' => $this->expenses_in_categories,
+      'incomes' => $this->incomes_grouped_to_categories,
+      'expenses' => $this->expenses_grouped_to_categories,
       'sum_of_incomes' => $this->sum_of_incomes,
       'sum_of_expenses' => $this->sum_of_expenses
     ]);
@@ -49,8 +49,8 @@ class Balance extends Authenticated
   {
     if(isset($_POST["start_date"]))
     {
-      $this->start_date = $_POST["start_date"];
-      $this->end_date = $_POST["end_date"];
+      $this->start_date = $_POST['start_date'];
+      $this->end_date = $_POST['end_date'];
     }
     elseif(isset($_POST['time_period']))
     {
@@ -59,47 +59,59 @@ class Balance extends Authenticated
     }
     else
     {
-      $this->start_date = DateHelper::setStartDate("total_time");
-      $this->end_date = DateHelper::setEndDate("total_time");
+      $this->start_date = DateHelper::setStartDate('total_time');
+      $this->end_date = DateHelper::setEndDate('total_time');
     }
   }
 
-  public function getIncomesInCategories()
+  public function getIncomesGroupedToCategories()
   {
     $income_categories = IncomeCategoriesAssignedToUser::getCategories();
-    $incomes_in_categories = [];
+    $incomes_grouped_to_categories = [];
     for ($i = 0; $i < sizeof($income_categories); $i++) {
-      array_push(
-        $incomes_in_categories,
-        [
-          $income_categories[$i][1] => $this->sumUpInTheCategory(
-            $income_categories[$i][0],
-            $this->incomes,
-            'income'
-          )
-        ]
-      );
+
+      $sum_in_the_category = $this->sumUpInTheCategory(
+                                      $income_categories[$i][0],
+                                      $this->incomes,
+                                      'income'
+                                    );
+
+      if ($sum_in_the_category > 0) {
+        array_push(
+          $incomes_grouped_to_categories, 
+          [
+            $income_categories[$i][1] => $sum_in_the_category
+          ]
+        );
+      }
     }
-    return $incomes_in_categories;
+
+    return $incomes_grouped_to_categories;
   }
 
-  public function getExpensesInCategories()
+  public function getExpensesGroupedToCategories()
   {
     $expense_categories = ExpenseCategoriesAssignedToUser::getCategories();
-    $expenses_in_categories = [];
+    $expenses_grouped_to_categories = [];
     for ($i = 0; $i < sizeof($expense_categories); $i++) {
-      array_push(
-        $expenses_in_categories,
-        [
-          $expense_categories[$i][1] => $this->sumUpInTheCategory(
-            $expense_categories[$i][0],
-            $this->expenses,
-            'expense'
-          )
-        ]
-      );
+
+      $sum_in_the_category = $this->sumUpInTheCategory(
+                                      $expense_categories[$i][0],
+                                      $this->expenses,
+                                      'expense'
+                                    );
+
+      if ($sum_in_the_category > 0) {
+        array_push(
+          $expenses_grouped_to_categories,
+          [
+            $expense_categories[$i][1] => $sum_in_the_category
+          ]
+        );
+      }
     }
-    return $expenses_in_categories;
+
+    return $expenses_grouped_to_categories;
   }
 
   public function sumUpInTheCategory($category_id, $current_user_tansactions, $transaction_prefix)
