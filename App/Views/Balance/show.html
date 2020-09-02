@@ -6,6 +6,7 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="/js/balance.js"></script>
+<script src="/js/dateChanger.js"></script>
 
 {% endblock %}
 
@@ -14,7 +15,7 @@
 <div class="row">
   <div class="col">
     <div id="setDateRangeForm">
-      <form method="post" action="/balance/show">
+      <form id="dateForm" method="post" action="/balance/show">
         <ul id="setDateRangeList">
           <li>
             <span style="font-size: 20px;">Set date range of your transactions:</span>
@@ -39,9 +40,6 @@
           <button type="button" class="btn btn-primary" style="background-color: #faad07; border: 1px solid black;" data-toggle="modal" data-target="#dateModal">Other Date Range</button>
           </li>
         </ul>
-        <div id="setDateRangeFormFooter">
-          <button type="submit"  class="btn btn-primary" style="width: 120px; margin: 10px; background-color: #faad07; border: 1px solid black;">Submit</button>
-        </div>
       </form>
     </div>
   </div>
