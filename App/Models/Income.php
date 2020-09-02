@@ -81,7 +81,8 @@ class Income extends \Core\Model
     $db = static::getDB();
     $stmt = $db->prepare($sql);
 
-    $start_date = 
+    $start_date = date($start_date);
+    $end_date = date($end_date);
 
     $stmt->bindValue('user_id', $_SESSION['user_id'], PDO::PARAM_INT);
     $stmt->bindValue('start_date', $start_date, PDO::PARAM_STR);

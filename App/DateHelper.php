@@ -61,21 +61,23 @@ class DateHelper
     $previous_month = self::getPreviousMonth($date);
     $year_of_previous_month = self::getYearOfPreviousMonth($date, $previous_month);
     $start_date = "";
-    switch($time_period)
-    {
-    case "currentMonth":
-        $start_date = $year."-".$current_month."-01";
-        break;
-    case "previousMonth": 
-        $start_date = $year_of_previous_month."-".$previous_month."-01";
-        break;
-    case "currentYear":
-        $start_date = $year."-01-01";
-        break;
-    case "totalTime";
-        $start_date = "2000-01-01";
-        break;
+
+    switch($time_period) {
+
+      case "current_month":
+          $start_date = $year."-".$current_month."-01";
+          break;
+      case "previous_month": 
+          $start_date = $year_of_previous_month."-".$previous_month."-01";
+          break;
+      case "current_year":
+          $start_date = $year."-01-01";
+          break;
+      case "total_time";
+          $start_date = "2000-01-01";
+          break;
     }
+
     return $start_date;
   }
 
@@ -84,23 +86,23 @@ class DateHelper
     $date = self::getNowDate();
     $previous_month = self::getPreviousMonth($date);
     $year_of_previous_month = self::getYearOfPreviousMonth($date, $previous_month);
-    if($time_period == "previous_month")
-    {
-    $number_of_previous_month = intval($previous_month);
-    $number_of_days_in_previous_month = cal_days_in_month(CAL_GREGORIAN, $number_of_previous_month, $year_of_previous_month);
-    if($number_of_days_in_previous_month > 9)
-    {
+
+    if($time_period == "previous_month") {
+
+      $number_of_previous_month = intval($previous_month);
+      $number_of_days_in_previous_month = cal_days_in_month(CAL_GREGORIAN, $number_of_previous_month, $year_of_previous_month);
+
+      if($number_of_days_in_previous_month > 9) {
         $end_date = $year_of_previous_month."-".$previous_month."-".strval($number_of_days_in_previous_month);
-    }
-    else
-    {
-        $end_date = $year_of_previous_month."-".$previous_month."-0".strval($number_of_days_in_previous_month);
-    }
-    }
-    else
-    {
+        } else {
+            $end_date = $year_of_previous_month."-".$previous_month."-0".strval($number_of_days_in_previous_month);
+        }
+    } else {
+
     $end_date = $date;
+
     }
+
     return $end_date;
   }
 }
