@@ -195,7 +195,6 @@ class User extends \Core\Model
         return false;
     }
 
-
     public static function getUserIdByEmail($user_email)
     {
         $sql = 'SELECT id FROM users WHERE email = :user_email';
@@ -208,5 +207,10 @@ class User extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_COLUMN, 0);
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

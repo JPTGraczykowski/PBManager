@@ -7,6 +7,7 @@ use \App\Auth;
 use \App\Models\ExpenseCategoriesAssignedToUser;
 use \App\Models\IncomeCategoriesAssignedToUser;
 use \App\Models\PaymentMethodsAssignedToUser;
+use \App\Models\User;
 
 class Settings extends Authenticated
 {
@@ -33,5 +34,18 @@ class Settings extends Authenticated
         'user' => $this->user
       ]
     );
+  }
+
+  public function checkPasswordAction()
+  {
+      $is_correct = false;
+      $email = $this->user->getEmail();
+
+      if (User::authenticate($email, $_GET['old_password'])) {
+        $is_correct = true;
+      }
+
+      header('Content-Type: application/json');
+      echo json_encode($is_correct);
   }
 }

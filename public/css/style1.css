@@ -498,6 +498,36 @@ h3 {
   background-color: #ff1f2f;
 }
 
+/* =======================  modals =================================== */
+
+
+.modal-title {
+  font-size: 20px;
+}
+
+.modal-fade {
+  background-color: #696969;
+}
+
+.modal-content {
+  background-color: #696969;
+  border: solid 1px black;
+}
+
+.modal-header {
+  border-bottom: solid 1px #343434;
+}
+
+.modal-footer {
+  border-top: solid 1px #343434;
+}
+
+.btn-modal {
+  border: solid 1px #fefefe;
+  color: #fefefe;
+  background-color: none;
+}
+
 /* =======================  balance site =================================== */
 
 #setDateRangeForm {
@@ -528,11 +558,6 @@ h3 {
   background-color: #faad07;
   border: 1px solid black;
   color: #fefefe;
-}
-
-.modal-title {
-  color: black;
-  font-size: 20px;
 }
 
 #balanceWindow {
@@ -578,7 +603,6 @@ h3 {
   line-height: 175%;
   width: 100%;
   height: 60px;
-  background-color: #faad07;
   font-weight: 600;
   border: 1px solid black;
   border-radius: 10px;
@@ -595,7 +619,6 @@ h3 {
   height: 30px;
   text-align: center;
   line-height: 200%;
-  background-color: #faad07;
   border-radius: 10px;
   border: 1px solid black;
   margin-bottom: 5px;
@@ -632,7 +655,6 @@ h3 {
   border: 1px solid black;
   border-radius: 10px;
   line-height: 150%;
-  background-color: #faad07;
 }
 
 

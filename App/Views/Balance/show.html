@@ -51,7 +51,7 @@
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #faad07;">
         <h5 class="modal-title" id="modalLabel">Set a date range:</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -60,19 +60,19 @@
       <form method="post">
         <div class="modal-body">
           <div id="dateRangeSection">
-            <span style="color: black;"> Enter start date: </span>
+            Enter start date:
             <div class="inputPanel">
               <i class="icon-calendar"></i><input type="date" class="enterDate" name="start_date">
             </div>
-            <span style="color: black;"> Enter end date: </span>
+            Enter end date:
             <div class="inputPanel">
               <i class="icon-calendar"></i><input type="date" class="enterDate" name="end_date">
             </div>
           </div> 
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="modal-footer" style="background-color: #faad07;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
         </div>
       </form>
     </div>
@@ -85,14 +85,14 @@
   <div class="col-lg-6">
     <div class="PBTable">
       <header>
-        <div class=" PBTableHeader">
+        <div class=" PBTableHeader" style="background-color: #faad07;">
           Incomes
         </div>
       </header>
       <div class="row">
         <div class="col-6">
           <div class="PBTableColumn">
-            <div class="PBTableColumnHeader">
+            <div class="PBTableColumnHeader" style="background-color: #faad07;">
               Item
             </div>
             <ul class="PBTableRows" id="incomesItems">
@@ -106,7 +106,7 @@
         </div>
         <div class="col-6">
           <div class="PBTableColumn">
-            <div class="PBTableColumnHeader">
+            <div class="PBTableColumnHeader" style="background-color: #faad07;">
               Amount
             </div>
             <ul class="PBTableRows" id="incomes">
@@ -120,7 +120,7 @@
         </div> 
       </div>
       <footer>
-        <div class="PBTableFooter" id="incomesSum">
+        <div class="PBTableFooter" id="incomesSum" style="background-color: #faad07;">
           {{ sum_of_incomes }}
         </div>
       </footer>
@@ -129,14 +129,14 @@
   <div class="col-lg-6">
     <div class="PBTable">
       <header>
-        <div class="PBTableHeader">
+        <div class="PBTableHeader" style="background-color: #faad07;">
           Expenses
         </div>
       </header>
       <div class="row">
         <div class="col-6">
           <div class="PBTableColumn">
-            <div class="PBTableColumnHeader">
+            <div class="PBTableColumnHeader" style="background-color: #faad07;">
               Item
             </div>
             <ul class="PBTableRows" id="expensesItems">
@@ -150,7 +150,7 @@
         </div>
         <div class="col-6">
           <div class="PBTableColumn">
-            <div class="PBTableColumnHeader">
+            <div class="PBTableColumnHeader" style="background-color: #faad07;">
               Amount
             </div>
             <ul class="PBTableRows" id="expenses">
@@ -164,7 +164,7 @@
         </div>  
       </div>
       <footer>
-        <div class="PBTableFooter" id="expenseSum">
+        <div class="PBTableFooter" id="expenseSum" style="background-color: #faad07;">
           {{ sum_of_expenses }}
         </div>
       </footer>

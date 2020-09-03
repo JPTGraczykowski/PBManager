@@ -3,30 +3,144 @@
 {% block title %}Settings{% endblock %}
 
 {% block footer %}
+
+<script src="/js/updateProfileValidator.js"></script>
+
 {% endblock %}
 
 {% block body %}
 
+<!-- User profile settings -->
 <div class="row">
+
   <div class="col-lg-3">
     {{ user.name }} Profile
   </div>
+
   <div class="col-lg-3">
-    Name
+    <a href="#changeNameModal" data-toggle="modal" data-target="#changeNameModal">
+      Change Name
+    </a>
   </div>
+
   <div class="col-lg-3">
-    Email
+    <a href="#changeEmailModal" data-toggle="modal" data-target="#changeEmailModal">
+      Change Email
+    </a>
   </div>
+
   <div class="col-lg-3">
-    Password
+    <a href="#changePasswordModal" data-toggle="modal" data-target="#changePasswordModal">
+      Change Password
+    </a>
+  </div>
+
+</div>
+
+<!-- Modals for user profile settings -->
+
+<div class="modal fade" id="changeNameModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changeNameModalForm">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input id="inputName" name="name" placeholder="Name" autofocus required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
+<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changeEmailModalForm">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="email" id="inputEmail" name="email" placeholder="Email address" required
+            class="form-control"/>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changePasswordModalForm">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="password" id="inputOldPassword" name="old_password" placeholder="Old password" required
+            class="form-control"/>
+          </div>
+
+          <div class="inputPanel">
+            <input type="password" id="inputPassword" name="new_password" placeholder="New password" required
+            class="form-control"/>
+          </div>
+
+          <div class="inputPanel">
+            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat new password" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Table with income categories, expense categories and payment methods -->
+
 <div class="row">
+
   <div class="col-lg-4">
     <div class="PBTable">
       <header>
-        <div class="PBTableHeader">
+        <div class="PBTableHeader" style="background-color: #0588c9;">
           Incomes Category
         </div>
       </header>
@@ -38,16 +152,17 @@
           </ul>
         </div>
       <footer>
-        <div class="PBTableFooter" id="incomesSum">
+        <div class="PBTableFooter" style="background-color: #0588c9;">
           Add New Category
         </div>
       </footer>
     </div>
   </div>
+
   <div class="col-lg-4">
     <div class="PBTable">
       <header>
-        <div class="PBTableHeader">
+        <div class="PBTableHeader" style="background-color: #0588c9;">
           Expense Categories
         </div>
       </header>
@@ -59,16 +174,17 @@
             </ul>
           </div>
       <footer>
-        <div class="PBTableFooter" id="expenseSum">
+        <div class="PBTableFooter" style="background-color: #0588c9;">
           Add New Category
         </div>
       </footer>
     </div>
   </div>
+
   <div class="col-lg-4">
     <div class="PBTable">
       <header>
-        <div class="PBTableHeader">
+        <div class="PBTableHeader" style="background-color: #0588c9;">
           Payment Methods
         </div>
       </header>
@@ -80,12 +196,13 @@
             </ul>
           </div>
       <footer>
-        <div class="PBTableFooter" id="expenseSum">
+        <div class="PBTableFooter" style="background-color: #0588c9;">
           Add New Method
         </div>
       </footer>
     </div>
   </div>
+
 </div>
 
 {% endblock %}
