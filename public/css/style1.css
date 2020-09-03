@@ -588,6 +588,59 @@ h3 {
   
 }
 
+/* =======================  Settings Site =================================== */
+
+#profileDetailsTile {
+  height: 145px;
+  margin-top: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #118be2;
+}
+
+#profileSettingsTile {
+  height: 150px;
+  margin-top: 30px;
+}
+
+#profileSettingsList {
+  list-style: none;
+  width: 100%;
+}
+
+#profileSettingsList li {
+  height: 45px;
+  line-height: 250%;
+  background-color: #118be2;
+  border: 1px solid black;
+  margin-left: -40px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding-left: 40px;
+  transition: all 0.2s ease-in-out;
+}
+
+#profileSettingsList li:hover {
+  cursor: pointer;
+  background-color: #3293d8;
+}
+
+#profileDetailsList {
+  list-style: none;
+  padding-top: 40px;
+}
+
+#profileDetailsList li {
+  height: 30px;
+  line-height: 250%;
+}
+
+#profileIcon {
+  padding-left: 70px;
+}
+
+
+
 /* =======================  PB Table =================================== */
 
 .PBTable {
