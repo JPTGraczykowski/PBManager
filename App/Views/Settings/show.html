@@ -14,7 +14,11 @@
 <div class="row">
 
   <div class="col-lg-3">
-    {{ user.name }} Profile
+    Profile:
+    <br />
+    Name: {{ user.name }}
+    <br />
+    Email: {{ user.email }}
   </div>
 
   <div class="col-lg-3">
@@ -49,11 +53,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" id="changeNameModalForm">
+      <form method="post" id="changeNameModalForm" action="/Settings/updateName">
         <div class="modal-body">
 
           <div class="inputPanel">
-            <input id="inputName" name="name" placeholder="Name" autofocus required
+            <input id="inputName" name="name" placeholder="New name" autofocus required
             class="form-control"/>
           </div>
 
@@ -77,11 +81,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" id="changeEmailModalForm">
+      <form method="post" id="changeEmailModalForm" action="/Settings/updateEmail">
         <div class="modal-body">
 
           <div class="inputPanel">
-            <input type="email" id="inputEmail" name="email" placeholder="Email address" required
+            <input type="email" id="inputEmail" name="email" placeholder="New email address" required
             class="form-control"/>
           </div>
         </div>
@@ -105,7 +109,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" id="changePasswordModalForm">
+      <form method="post" id="changePasswordModalForm" action="/Settings/updatePassword">
         <div class="modal-body">
 
           <div class="inputPanel">

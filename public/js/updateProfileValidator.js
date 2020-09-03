@@ -28,7 +28,7 @@ $.validator.addMethod('validPassword',
             email: {
               required: true,
               email: true,
-              remote: '/Signup/validateEmail'
+              remote: '/Account/validateEmail'
             }
           },
           messages: {
@@ -43,7 +43,7 @@ $.validator.addMethod('validPassword',
     $('#changePasswordModalForm').validate({
       rules: {
         old_password: {
-          remote: '/Settings/checkPassword'
+          remote: '/Account/checkPassword'
         },
         new_password: {
           required: true,

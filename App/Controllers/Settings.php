@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Auth;
+use \App\Flash;
 use \App\Models\ExpenseCategoriesAssignedToUser;
 use \App\Models\IncomeCategoriesAssignedToUser;
 use \App\Models\PaymentMethodsAssignedToUser;
@@ -36,16 +37,33 @@ class Settings extends Authenticated
     );
   }
 
-  public function checkPasswordAction()
+  public function updateNameAction()
   {
-      $is_correct = false;
-      $email = $this->user->getEmail();
+    if ($this->user->updateName($_POST['name'])) {
+      Flash::addMessage('Name changed successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful changing name', Flash::WARNING);
+    }
+  }
 
-      if (User::authenticate($email, $_GET['old_password'])) {
-        $is_correct = true;
-      }
+  public function updateEmailAction()
+  {
+    if ($this->user->updateEmail($_POST['email'])) {
+      Flash::addMessage('Email changed successfully');
+      $this->redirect('/Settings/show');
+    }  else {
+      Flash::addMessage('Unsuccessful changing email', Flash::WARNING);
+    }
+  }
 
-      header('Content-Type: application/json');
-      echo json_encode($is_correct);
+  public function updatePasswordAction()
+  {
+    if ($this->user->updatePassword($_POST['old_password'], $_POST['new_password'], $_POST['password_confirmation'])) {
+      Flash::addMessage('Password changed successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful changing password', Flash::WARNING);
+    }
   }
 }
