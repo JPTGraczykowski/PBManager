@@ -83,19 +83,19 @@
 <section>
 <div class="row">
   <div class="col-lg-6">
-    <div class="transactionTable">
+    <div class="PBTable">
       <header>
-        <div class=" transTableHeader">
+        <div class=" PBTableHeader">
           Incomes
         </div>
       </header>
       <div class="row">
         <div class="col-6">
-          <div class="transTableColumn">
-            <div class="transTableColumnHeader">
+          <div class="PBTableColumn">
+            <div class="PBTableColumnHeader">
               Item
             </div>
-            <ul class="transTableRows" id="incomesItems">
+            <ul class="PBTableRows" id="incomesItems">
               {% for income in incomes %}
                 {% for category, amount in income %}
                   <li>{{ category }}</li>
@@ -105,11 +105,11 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="transTableColumn">
-            <div class="transTableColumnHeader">
+          <div class="PBTableColumn">
+            <div class="PBTableColumnHeader">
               Amount
             </div>
-            <ul class="transTableRows" id="incomes">
+            <ul class="PBTableRows" id="incomes">
               {% for income in incomes %}
                 {% for category, amount in income %}
                   <li>{{ amount }}</li>
@@ -120,26 +120,26 @@
         </div> 
       </div>
       <footer>
-        <div class="transTableFooter" id="incomesSum">
+        <div class="PBTableFooter" id="incomesSum">
           {{ sum_of_incomes }}
         </div>
       </footer>
     </div>
   </div>
   <div class="col-lg-6">
-    <div class="transactionTable">
+    <div class="PBTable">
       <header>
-        <div class="transTableHeader">
+        <div class="PBTableHeader">
           Expenses
         </div>
       </header>
       <div class="row">
         <div class="col-6">
-          <div class="transTableColumn">
-            <div class="transTableColumnHeader">
+          <div class="PBTableColumn">
+            <div class="PBTableColumnHeader">
               Item
             </div>
-            <ul class="transTableRows" id="expensesItems">
+            <ul class="PBTableRows" id="expensesItems">
               {% for expense in expenses %}
                 {% for category, amount in expense %}
                   <li>{{ category }}</li>
@@ -149,11 +149,11 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="transTableColumn">
-            <div class="transTableColumnHeader">
+          <div class="PBTableColumn">
+            <div class="PBTableColumnHeader">
               Amount
             </div>
-            <ul class="transTableRows" id="expenses">
+            <ul class="PBTableRows" id="expenses">
               {% for expense in expenses %}
                 {% for category, amount in expense %}
                   <li>{{ amount }}</li>
@@ -164,7 +164,7 @@
         </div>  
       </div>
       <footer>
-        <div class="transTableFooter" id="expenseSum">
+        <div class="PBTableFooter" id="expenseSum">
           {{ sum_of_expenses }}
         </div>
       </footer>

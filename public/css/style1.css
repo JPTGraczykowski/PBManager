@@ -535,76 +535,6 @@ h3 {
   font-size: 20px;
 }
 
-.transactionTable {
-  margin-top: 50px;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 40px;
-}
-
-.transTableHeader {
-  text-align: center;
-  font-size: 30px;
-  line-height: 175%;
-  width: 100%;
-  height: 60px;
-  background-color: #faad07;
-  font-weight: 600;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-.transTableColumn {
-  margin-top: 5px;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.transTableColumnHeader {
-  width: 100%;
-  height: 30px;
-  text-align: center;
-  line-height: 200%;
-  background-color: #faad07;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin-bottom: 5px;
-}
-
-.transTableRows {
-  list-style-type: none;
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  border: 1px solid black;
-  background-color: #696969;
-  border-radius: 10px;
-  margin-bottom: 5px;
-}
-
-.transTableRows > li {
-  width: 100%;
-  border-bottom: 1px solid black;
-  height: 30px;
-  line-height: 175%;
-  text-align: center;
-}
-
-.transTableRows > li:last-child {
-  border: 0;
-}
-
-.transTableFooter {
-  clear: both;
-  text-align: center;
-  width: 100%;
-  height: 30px;
-  border: 1px solid black;
-  border-radius: 10px;
-  line-height: 150%;
-  background-color: #faad07;
-}
-
 #balanceWindow {
   height: 120px;
   width: 100%;
@@ -632,6 +562,79 @@ h3 {
   border: 1px solid black;
   
 }
+
+/* =======================  PB Table =================================== */
+
+.PBTable {
+  margin-top: 50px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.PBTableHeader {
+  text-align: center;
+  font-size: 30px;
+  line-height: 175%;
+  width: 100%;
+  height: 60px;
+  background-color: #faad07;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.PBTableColumn {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.PBTableColumnHeader {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  line-height: 200%;
+  background-color: #faad07;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.PBTableRows {
+  list-style-type: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  background-color: #696969;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.PBTableRows > li {
+  width: 100%;
+  border-bottom: 1px solid black;
+  height: 30px;
+  line-height: 175%;
+  text-align: center;
+}
+
+.PBTableRows > li:last-child {
+  border: 0;
+}
+
+.PBTableFooter {
+  clear: both;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  line-height: 150%;
+  background-color: #faad07;
+}
+
 
 /* ============== site footer =========== */
 

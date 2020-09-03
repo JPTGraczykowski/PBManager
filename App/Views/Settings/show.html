@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-lg-3">
+    {{ user.name }} Profile
+  </div>
+  <div class="col-lg-3">
+    Name
+  </div>
+  <div class="col-lg-3">
+    Email
+  </div>
+  <div class="col-lg-3">
+    Password
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader">
+          Incomes Category
+        </div>
+      </header>
+        <div class="PBTableColumn">
+          <ul class="PBTableRows" id="incomesItems">
+            {% for category in income_categories %}
+                <li>{{ category[1] }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      <footer>
+        <div class="PBTableFooter" id="incomesSum">
+          Add New Category
+        </div>
+      </footer>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader">
+          Expense Categories
+        </div>
+      </header>
+          <div class="PBTableColumn">
+            <ul class="PBTableRows" id="expensesItems">
+              {% for category in expense_categories %}
+                  <li>{{ category[1] }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+      <footer>
+        <div class="PBTableFooter" id="expenseSum">
+          Add New Category
+        </div>
+      </footer>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader">
+          Payment Methods
+        </div>
+      </header>
+          <div class="PBTableColumn">
+            <ul class="PBTableRows" id="expensesItems">
+              {% for method in payment_methods %}
+                  <li>{{ method[1] }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+      <footer>
+        <div class="PBTableFooter" id="expenseSum">
+          Add New Method
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
