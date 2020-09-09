@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use \Core\View;
 use \App\Auth;
-use \App\Models\ExpenseCategoriesAssignedToUser;
-use \App\Models\IncomeCategoriesAssignedToUser;
+use \App\Flash;
+use \App\Models\Categories\ExpenseCategoriesAssignedToUser;
+use \App\Models\Categories\IncomeCategoriesAssignedToUser;
 use \App\Models\PaymentMethodsAssignedToUser;
 
 class Settings extends Authenticated

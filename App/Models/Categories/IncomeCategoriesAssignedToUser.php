@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Categories;
 
 use \App\Auth;
 use \App\Models\User;
 use PDO;
 
-class IncomeCategoriesAssignedToUser extends \Core\Model
+class IncomeCategoriesAssignedToUser extends Category
 {
 
   public static function getCategories()
@@ -25,7 +25,7 @@ class IncomeCategoriesAssignedToUser extends \Core\Model
 
   public static function assignDefaultCategories($new_user_email)
   {
-    $default_income_categories = static::getDefaultCategories();
+    $default_income_categories = static::getDefaultCategories('income');
     $new_user_id = User::getUserIdByEmail($new_user_email);
 
     $sql = 'INSERT INTO incomes_category_assigned_to_users
@@ -38,19 +38,30 @@ class IncomeCategoriesAssignedToUser extends \Core\Model
     { 
       $stmt->bindValue(':user_id', $new_user_id, PDO::PARAM_INT);
       $stmt->bindValue(':name', $default_income_categories[$i], PDO::PARAM_STR);
+
       $stmt->execute();
     }
   }
 
-  public static function getDefaultCategories()
+  public static function addNewCategory($name)
   {
-    $sql = 'SELECT name FROM incomes_category_default';
+    if (static::categoryNameExists($name, 'income') || $name == '') {
 
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
+      return false;
 
-    $stmt->execute();
+    } else {
 
-    return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+      $sql = 'INSERT INTO incomes_category_assigned_to_users
+              VALUES (NULL, :user_id, :name)';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+
+      $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+      $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+      return $stmt->execute();
+
+    }
   }
 }

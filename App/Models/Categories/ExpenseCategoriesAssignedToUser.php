@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Categories;
 
 use \App\Auth;
 use \App\Models\User;
 use PDO;
 
-class ExpenseCategoriesAssignedToUser extends \Core\Model
+class ExpenseCategoriesAssignedToUser extends Category
 {
 
   public static function getCategories()
@@ -25,7 +25,7 @@ class ExpenseCategoriesAssignedToUser extends \Core\Model
 
   public static function assignDefaultCategories($new_user_email)
   {
-    $default_expense_categories = static::getDefaultCategories();
+    $default_expense_categories = static::getDefaultCategories('expense');
     $new_user_id = User::getUserIdByEmail($new_user_email);
 
     $sql = 'INSERT INTO expenses_category_assigned_to_users
@@ -44,15 +44,25 @@ class ExpenseCategoriesAssignedToUser extends \Core\Model
     }
   }
 
-  public static function getDefaultCategories()
+  public static function addNewCategory($name)
   {
-    $sql = 'SELECT name FROM expenses_category_default';
+    if (static::categoryNameExists($name, 'expense') || $name == '') {
 
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
+      return false;
 
-    $stmt->execute();
+    } else {
 
-    return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+      $sql = 'INSERT INTO expenses_category_assigned_to_users
+              VALUES (NULL, :user_id, :name)';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+
+      $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+      $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+      return $stmt->execute();
+
+    }
   }
 }

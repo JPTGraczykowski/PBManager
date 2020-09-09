@@ -176,12 +176,11 @@
           </ul>
         </div>
       <footer>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Add New Category
-        </div>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Delete Category
-        </div>
+        <a href="#addIncomeCategoryModal" data-toggle="modal" data-target="#addIncomeCategoryModal">
+          <div class="PBTableFooter" style="background-color: #0588c9;">
+            Add New Category
+          </div>
+        </a>
       </footer>
     </div>
   </div>
@@ -201,12 +200,11 @@
             </ul>
           </div>
       <footer>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Add New Category
-        </div>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Delete Category
-        </div>
+        <a href="#addExpenseCategoryModal" data-toggle="modal" data-target="#addExpenseCategoryModal">
+          <div class="PBTableFooter" style="background-color: #0588c9;">
+            Add New Category
+          </div>
+        </a>
       </footer>
     </div>
   </div>
@@ -226,16 +224,101 @@
             </ul>
           </div>
       <footer>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Add New Method
-        </div>
-        <div class="PBTableFooter" style="background-color: #0588c9;">
-          Delete Method
-        </div>
+        <a href="#addPaymentMethodModal" data-toggle="modal" data-target="#addPaymentMethodModal">
+          <div class="PBTableFooter" style="background-color: #0588c9;">
+            Add New Method
+          </div>
+        </a>
       </footer>
     </div>
   </div>
 
+</div>
+
+<!-- Add, edit category / method modals -->
+
+<div class="modal fade" id="addIncomeCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Income Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addIncomeCategoryModalForm" action="/Category/addIncomeCategory">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputIncomeCategoryName" name="category_name" placeholder="New Income Category" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addPaymentMethodModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Payment Method</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addPaymentMethodModalForm" action="/PaymentMethod/addPaymentMethod">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputPaymentMethodName" name="method_name" placeholder="New Payment Method" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addExpenseCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Expense Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addExpenseCategoryModalForm" action="/Category/addExpenseCategory">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputExpenseCategoryName" name="category_name" placeholder="New Expense Category" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
