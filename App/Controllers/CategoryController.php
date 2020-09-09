@@ -5,10 +5,11 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Auth;
 use \App\Flash;
+use \App\Models\Categories\Category;
 use \App\Models\Categories\ExpenseCategoriesAssignedToUser;
 use \App\Models\Categories\IncomeCategoriesAssignedToUser;
 
-class Category extends Authenticated
+class CategoryController extends Authenticated
 {
   public function addIncomeCategoryAction()
   {
@@ -30,5 +31,23 @@ class Category extends Authenticated
       Flash::addMessage('Unsuccessful adding new category', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
+  }
+
+  public function validateIncomeCategoryNameAction()
+  {
+    $is_valid = ! Category::categoryNameExists($_GET['category_name'], 'income', $_GET['ignore_id'] ?? null);
+
+    header('Content-Type: application/json');
+    
+    echo json_encode($is_valid);
+  }
+
+  public function validateExpenseCategoryNameAction()
+  {
+    $is_valid = ! Category::categoryNameExists($_GET['category_name'], 'expense', $_GET['ignore_id'] ?? null);
+
+    header('Content-Type: application/json');
+    
+    echo json_encode($is_valid);
   }
 }

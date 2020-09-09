@@ -5,6 +5,8 @@
 {% block footer %}
 
 <script src="/js/updateProfileValidator.js"></script>
+<script src="/js/addNewCategoryValidator.js"></script>
+
 
 {% endblock %}
 
@@ -247,7 +249,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" id="addIncomeCategoryModalForm" action="/Category/addIncomeCategory">
+      <form method="post" id="addIncomeCategoryModalForm" action="/CategoryController/addIncomeCategory">
         <div class="modal-body">
 
           <div class="inputPanel">
@@ -303,7 +305,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form method="post" id="addExpenseCategoryModalForm" action="/Category/addExpenseCategory">
+      <form method="post" id="addExpenseCategoryModalForm" action="/CategoryController/addExpenseCategory">
         <div class="modal-body">
 
           <div class="inputPanel">

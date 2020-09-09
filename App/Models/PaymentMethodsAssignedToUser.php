@@ -56,15 +56,42 @@ class PaymentMethodsAssignedToUser extends \Core\Model
 
   public static function addNewMethod($name)
   {
-    $sql = 'INSERT INTO payment_methods_assigned_to_users
-            VALUES (NULL, :user_id, :name)';
+    if (static::paymentMethodExists($name) || $name == '') {
 
-    $db = static::getDB();
-    $stmt = $db->prepare($sql);
+      return false;
 
-    $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    } else {
 
-    $stmt->execute();
+      $sql = 'INSERT INTO payment_methods_assigned_to_users
+              VALUES (NULL, :user_id, :name)';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+
+      $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+      $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+
+      return $stmt->execute();
+    }
+  }
+
+  public static function paymentMethodExists($name)
+  {
+    return static::findByPaymentMethodName($name) !== false;
+  }
+
+  public static function findByPaymentMethodName($name)
+  {
+      $sql = 'SELECT * FROM payment_methods_assigned_to_users WHERE name = :name';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+      $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+
+      $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+      $stmt->execute();
+
+      return $stmt->fetch();
   }
 }
