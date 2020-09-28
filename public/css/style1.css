@@ -711,6 +711,16 @@ h3 {
   margin-bottom: 5px;
 }
 
+.editDeleteSpan {
+  float: right;
+  margin-right: 15px;
+  margin-left: -45px;
+}
+
+.editDeleteSpan svg:hover{
+  cursor: pointer;
+  color: #118be2;
+}
 
 /* ============== site footer =========== */
 

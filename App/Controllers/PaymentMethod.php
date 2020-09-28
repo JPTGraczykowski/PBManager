@@ -29,4 +29,15 @@ class PaymentMethod extends Authenticated
     
     echo json_encode($is_valid);
   }
+
+  public function editPaymentMethodNameAction()
+  {
+    if (PaymentMethodsAssignedToUser::editMethodName($_POST['method_name'], $_POST['method_id'])) {
+      Flash::addMessage('Method name editted successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful editting method name', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
 }

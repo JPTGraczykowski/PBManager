@@ -50,4 +50,15 @@ class CategoryController extends Authenticated
     
     echo json_encode($is_valid);
   }
+
+  public function editCategoryName()
+  {
+    if (Category::editCategoryName($_POST['category_name'], $_POST['category_id'], $_POST['transaction_type'])) {
+      Flash::addMessage('Category name editted successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful editting category name', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
 }
