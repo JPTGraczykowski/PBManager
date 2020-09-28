@@ -61,4 +61,15 @@ class CategoryController extends Authenticated
       $this->redirect('/Settings/show');
     }
   }
+
+  public function deleteCategory()
+  {
+    if (Category::analyseDeletingCategory($_POST['category_id'], $_POST['transaction_type'])) {
+      Flash::addMessage('Category deleted successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful deleting category', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
 }

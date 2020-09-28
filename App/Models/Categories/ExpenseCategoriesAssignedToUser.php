@@ -34,8 +34,6 @@ class ExpenseCategoriesAssignedToUser extends Category
     $db = static::getDB();
     $stmt = $db->prepare($sql);
 
-    $number_of_categories = $stmt->rowCount();
-
     for ($i=0; $i<count($default_expense_categories); $i++)
     { 
       $stmt->bindValue(':user_id', $new_user_id, PDO::PARAM_INT);
