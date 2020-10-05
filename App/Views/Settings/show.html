@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+
+{% block title %}Settings{% endblock %}
+
+{% block footer %}
+
+
+<script src="/js/paymentMethodEditor.js"></script>
+<script src="/js/categoryEditor.js"></script>
+<script src="/js/updateProfileValidator.js"></script>
+<script src="/js/addNewCategoryValidator.js"></script>
+
+
+{% endblock %}
+
+{% block body %}
+
+<!-- User profile settings -->
+<div class="row">
+
+  <div class="col-lg-6">
+    <div id="profileDetailsTile">
+      <div class="row">
+        <div class="col" style="border-right: 0.5px solid #0355a7;">
+          <div id="profileIcon">
+            <svg width="140px" height="140px" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 5c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="col">
+          <ul id="profileDetailsList">
+            <li>
+              Name: {{ user.name }}
+            </li>
+            <li>
+              Email: {{ user.email }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div id="profileSettingsTile">
+      <ul id="profileSettingsList">
+        <a href="#changeNameModal" data-toggle="modal" data-target="#changeNameModal">
+          <li>
+            Change Name
+          </li>
+        </a>
+        <a href="#changeEmailModal" data-toggle="modal" data-target="#changeEmailModal">
+          <li>
+            Change Email
+          </li>
+        </a>
+        <a href="#changePasswordModal" data-toggle="modal" data-target="#changePasswordModal">
+          <li>
+            Change Password
+          </li>
+        </a>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- Modals for user profile settings -->
+
+<div class="modal fade" id="changeNameModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changeNameModalForm" action="/Account/updateName">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input id="inputName" name="name" placeholder="New name" autofocus required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changeEmailModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Email</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changeEmailModalForm" action="/Account/updateEmail">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="email" id="inputEmail" name="email" placeholder="New email address" required
+            class="form-control"/>
+          </div>
+        </div>
+
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Change Your Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="changePasswordModalForm" action="/Account/updatePassword">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="password" id="inputOldPassword" name="old_password" placeholder="Old password" required
+            class="form-control"/>
+          </div>
+
+          <div class="inputPanel">
+            <input type="password" id="inputPassword" name="new_password" placeholder="New password" required
+            class="form-control"/>
+          </div>
+
+          <div class="inputPanel">
+            <input type="password" id="inputPasswordConfirmation" name="password_confirmation" placeholder="Repeat new password" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Table with income categories, expense categories and payment methods -->
+
+<div class="row">
+
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader" id="incomes_category" style="background-color: #0588c9;">
+          Incomes Category
+        </div>
+      </header>
+        <div class="PBTableColumn">
+          <ul class="PBTableRows" id="incomesItems">
+            {% for category in income_categories %}
+              <li>
+                {{ category[1] }}
+                <div class="editDeleteSpan">
+                  <a href="#editCategoryModal" data-toggle="modal" data-target="#editCategoryModal" data-category-id="{{category[0]}}" data-transaction-type="income">
+                    <svg id="edit_income_category_{{category[0]}}" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg>
+                  </a>
+                  <a href="#deleteCategoryModal" data-toggle="modal" data-target="#deleteCategoryModal" data-category-id="{{category[0]}}" data-transaction-type="income" data-category-name="{{category[1]}}">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                  </a>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      <footer>
+        <a href="#addIncomeCategoryModal" data-toggle="modal" data-target="#addIncomeCategoryModal">
+          <div class="PBTableFooter addNewCategoryOrMethod" style="background-color: #0588c9;">
+            Add New Category
+          </div>
+        </a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader" style="background-color: #0588c9;">
+          Expense Categories
+        </div>
+      </header>
+          <div class="PBTableColumn">
+            <ul class="PBTableRows" id="expensesItems">
+              {% for category in expense_categories %}
+                <li>
+                  {{ category[1] }}
+                  <div class="editDeleteSpan">
+                    <a href="#editCategoryModal" data-toggle="modal" data-target="#editCategoryModal" data-category-id="{{category[0]}}" data-transaction-type="expense">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                      </svg>
+                    </a>
+                    <a href="#deleteCategoryModal" data-toggle="modal" data-target="#deleteCategoryModal" data-category-id="{{category[0]}}" data-transaction-type="expense" data-category-name="{{category[1]}}">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+      <footer>
+        <a href="#addExpenseCategoryModal" data-toggle="modal" data-target="#addExpenseCategoryModal">
+          <div class="PBTableFooter addNewCategoryOrMethod" style="background-color: #0588c9;">
+            Add New Category
+          </div>
+        </a>
+      </footer>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="PBTable">
+      <header>
+        <div class="PBTableHeader" style="background-color: #0588c9;">
+          Payment Methods
+        </div>
+      </header>
+          <div class="PBTableColumn">
+            <ul class="PBTableRows" id="expensesItems">
+              {% for method in payment_methods %}
+                <li>
+                  {{ method[1] }}
+                  <div class="editDeleteSpan">
+                    <a href="#editMethodModal" data-toggle="modal" data-target="#editMethodModal" data-method-id="{{method[0]}}">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                      </svg>
+                    </a>
+                    <a href="#deleteMethodModal" data-toggle="modal" data-target="#deleteMethodModal" data-method-id="{{method[0]}}" data-method-name="{{method[1]}}">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+      <footer>
+        <a href="#addPaymentMethodModal" data-toggle="modal" data-target="#addPaymentMethodModal">
+          <div class="PBTableFooter addNewCategoryOrMethod" style="background-color: #0588c9;">
+            Add New Method
+          </div>
+        </a>
+      </footer>
+    </div>
+  </div>
+
+</div>
+
+<!-- Add, edit category / method modals -->
+
+<!-- Add income category modal -->
+
+<div class="modal fade" id="addIncomeCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Income Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addIncomeCategoryModalForm" action="/CategoryController/addIncomeCategory">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputIncomeCategoryName" name="category_name" placeholder="New Income Category" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add payment method modal -->
+
+<div class="modal fade" id="addPaymentMethodModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Payment Method</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addPaymentMethodModalForm" action="/PaymentMethod/addPaymentMethod">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputPaymentMethodName" name="method_name" placeholder="New Payment Method" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add expense category modal -->
+
+<div class="modal fade" id="addExpenseCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel">Add Expense Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="addExpenseCategoryModalForm" action="/CategoryController/addExpenseCategory">
+        <div class="modal-body">
+
+          <div class="inputPanel">
+            <input type="text" id="inputExpenseCategoryName" name="category_name" placeholder="New Expense Category" required
+            class="form-control"/>
+          </div>
+
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit category modal -->
+
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="editCategoryModalForm" action="/CategoryController/editCategoryName">
+        <div class="modal-body">
+          <input type="hidden" name="transaction_type">
+          <input type="hidden" name="category_id">
+          <div class="inputPanel">
+            <input type="text" id="categoryName" name="category_name" placeholder="New Category Name" required
+            class="form-control"/>
+          </div>
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Edit payment method modal -->
+
+<div class="modal fade" id="editMethodModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="editMethodModalForm" action="/PaymentMethod/editPaymentMethodName">
+        <div class="modal-body">
+          <input type="hidden" name="method_id">
+          <div class="inputPanel">
+            <input type="text" id="methodName" name="method_name" placeholder="New Method Name" required
+            class="form-control"/>
+          </div>
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Submit</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete category modal -->
+
+<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="deleteCategoryModalForm" action="/CategoryController/deleteCategory">
+        <div class="modal-body">
+          <input type="hidden" name="transaction_type">
+          <input type="hidden" name="category_id">
+          <div id="modal-question"></div>
+          <br />
+          <div id="modal-hint"></div>
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Yes, I am</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">No, I'm not</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteMethodModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #0588c9;">
+        <h5 class="modal-title" id="modalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" id="deleteMethodModalForm" action="/PaymentMethod/deleteMethod">
+        <div class="modal-body">
+          <input type="hidden" name="method_id">
+          <div id="modal-question"></div>
+          <br />
+          <div id="modal-hint"></div>
+        </div>
+        <div class="modal-footer" style="background-color: #0588c9;">
+          <button type="submit" class="btn btn-modal">Yes, I am</button>
+          <button type="button" class="btn btn-modal" data-dismiss="modal">No, I'm not</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

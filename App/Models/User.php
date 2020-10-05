@@ -57,7 +57,7 @@ class User extends \Core\Model
             $this->errors[] = 'Invalid email';
         }
         if (static::emailExists($this->email)) {
-            $this->errors[] = 'email already taken';
+            $this->errors[] = 'Email already taken';
         }
 
         // Password
@@ -147,52 +147,110 @@ class User extends \Core\Model
         return $stmt->execute();
     }
 
-    
-    public function updateProfile($data)
+    public function updateName($name) 
     {
-        $this->name = $data['name'];
-        $this->email = $data['email'];
+        $this->name = $name;
 
-        // Only validate and update the password if a value provided
-        if ($data['password'] != '') {
-            $this->password = $data['password'];
+        if ($this->name == '') {
+            $this->errors[] = 'Name is required';
         }
-
-        $this->validate();
 
         if (empty($this->errors)) {
 
-            $sql = 'UPDATE users
-                    SET name = :name,
-                        email = :email';
+        $sql = 'UPDATE users SET name = :name WHERE id = :id';
 
-            // Add password if it's set
-            if (isset($this->password)) {
-                $sql .= ', password_hash = :password_hash';
-            }
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
 
-            $sql .= "\nWHERE id = :id";
+        $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+
+        }
+        else {
+
+            return false;
+
+        }
+    }
 
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
+    public function updateEmail($email) 
+    {
+        $this->email = $email;
 
-            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-
-            // Add password if it's set
-            if (isset($this->password)) {
-
-                $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
-                $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
-
-            }
-
-            return $stmt->execute();
+        if (filter_var($this->email, FILTER_VALIDATE_EMAIL) === false) {
+            $this->errors[] = 'Invalid email';
+        }
+        if (static::emailExists($this->email)) {
+            $this->errors[] = 'Email already taken';
         }
 
-        return false;
+        if (empty($this->errors)) {
+
+        $sql = 'UPDATE users SET email = :email WHERE id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+
+        }
+        else {
+
+            return false;
+
+        }
+    }
+
+
+    public function updatePassword($old_password, $new_password, $password_confirmation)
+    {
+        if (!password_verify($old_password, $this->password_hash)) {
+            $this->errors[] = 'Current password is incorrect';
+        }
+        
+        if ($new_password != $password_confirmation) {
+            $this->errors[] = 'Please enter the same password to confim';
+        }
+
+        $this->password = $new_password;
+
+        if (strlen($this->password) < 6) {
+            $this->errors[] = 'Please enter at least 6 characters for the password';
+        }
+
+        if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one letter';
+        }
+
+        if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+            $this->errors[] = 'Password needs at least one number';
+        }
+
+        if (empty($this->errors)) {
+
+        $sql = 'UPDATE users SET password_hash = :password_hash WHERE id = :id';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+        $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+
+        }
+        else {
+
+            return false;
+
+        }
     }
 
 
@@ -208,5 +266,10 @@ class User extends \Core\Model
         $stmt->execute();
 
         return $stmt->fetch(PDO::FETCH_COLUMN, 0);
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

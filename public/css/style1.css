@@ -498,6 +498,36 @@ h3 {
   background-color: #ff1f2f;
 }
 
+/* =======================  modals =================================== */
+
+
+.modal-title {
+  font-size: 20px;
+}
+
+.modal-fade {
+  background-color: #696969;
+}
+
+.modal-content {
+  background-color: #696969;
+  border: solid 1px black;
+}
+
+.modal-header {
+  border-bottom: solid 1px #343434;
+}
+
+.modal-footer {
+  border-top: solid 1px #343434;
+}
+
+.btn-modal {
+  border: solid 1px #fefefe;
+  color: #fefefe;
+  background-color: none;
+}
+
 /* =======================  balance site =================================== */
 
 #setDateRangeForm {
@@ -530,81 +560,6 @@ h3 {
   color: #fefefe;
 }
 
-.modal-title {
-  color: black;
-  font-size: 20px;
-}
-
-.transactionTable {
-  margin-top: 50px;
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 40px;
-}
-
-.transTableHeader {
-  text-align: center;
-  font-size: 30px;
-  line-height: 175%;
-  width: 100%;
-  height: 60px;
-  background-color: #faad07;
-  font-weight: 600;
-  border: 1px solid black;
-  border-radius: 10px;
-}
-
-.transTableColumn {
-  margin-top: 5px;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.transTableColumnHeader {
-  width: 100%;
-  height: 30px;
-  text-align: center;
-  line-height: 200%;
-  background-color: #faad07;
-  border-radius: 10px;
-  border: 1px solid black;
-  margin-bottom: 5px;
-}
-
-.transTableRows {
-  list-style-type: none;
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  border: 1px solid black;
-  background-color: #696969;
-  border-radius: 10px;
-  margin-bottom: 5px;
-}
-
-.transTableRows > li {
-  width: 100%;
-  border-bottom: 1px solid black;
-  height: 30px;
-  line-height: 175%;
-  text-align: center;
-}
-
-.transTableRows > li:last-child {
-  border: 0;
-}
-
-.transTableFooter {
-  clear: both;
-  text-align: center;
-  width: 100%;
-  height: 30px;
-  border: 1px solid black;
-  border-radius: 10px;
-  line-height: 150%;
-  background-color: #faad07;
-}
-
 #balanceWindow {
   height: 120px;
   width: 100%;
@@ -631,6 +586,145 @@ h3 {
   margin: 20px 0;
   border: 1px solid black;
   
+}
+
+/* =======================  Settings Site =================================== */
+
+#profileDetailsTile {
+  height: 145px;
+  margin-top: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #118be2;
+}
+
+#profileSettingsTile {
+  height: 150px;
+  margin-top: 30px;
+}
+
+#profileSettingsList {
+  list-style: none;
+  width: 100%;
+}
+
+#profileSettingsList li {
+  height: 45px;
+  line-height: 250%;
+  background-color: #118be2;
+  border: 1px solid black;
+  margin-left: -40px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding-left: 40px;
+  transition: all 0.2s ease-in-out;
+}
+
+#profileSettingsList li:hover {
+  cursor: pointer;
+  background-color: #3293d8;
+}
+
+#profileDetailsList {
+  list-style: none;
+  padding-top: 40px;
+}
+
+#profileDetailsList li {
+  height: 30px;
+  line-height: 250%;
+}
+
+#profileIcon {
+  padding-left: 70px;
+}
+
+
+
+/* =======================  PB Table =================================== */
+
+.PBTable {
+  margin-top: 50px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.PBTableHeader {
+  text-align: center;
+  font-size: 30px;
+  line-height: 175%;
+  width: 100%;
+  height: 60px;
+  font-weight: 600;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.PBTableColumn {
+  margin-top: 5px;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.PBTableColumnHeader {
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  line-height: 200%;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+
+.PBTableRows {
+  list-style-type: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  background-color: #696969;
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.PBTableRows > li {
+  width: 100%;
+  border-bottom: 1px solid black;
+  height: 30px;
+  line-height: 175%;
+  text-align: center;
+}
+
+.PBTableRows > li:last-child {
+  border: 0;
+}
+
+.PBTableFooter {
+  clear: both;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  line-height: 150%;
+  margin-bottom: 5px;
+}
+
+.addNewCategoryOrMethod:hover {
+  cursor: pointer;
+  background-color: #0099e6;
+}
+
+.editDeleteSpan {
+  float: right;
+  margin-right: 15px;
+  margin-left: -45px;
+}
+
+.editDeleteSpan svg:hover{
+  cursor: pointer;
+  color: #118be2;
 }
 
 /* ============== site footer =========== */

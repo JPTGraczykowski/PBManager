@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Core\View;
 use App\Models\Income;
-use App\Models\IncomeCategoriesAssignedToUser;
+use App\Models\Categories\IncomeCategoriesAssignedToUser;
 use App\Flash;
 
 class IncomeController extends Authenticated
