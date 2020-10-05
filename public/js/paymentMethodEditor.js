@@ -24,3 +24,17 @@ $('#editMethodModal').on('show.bs.modal', function (e) {
     }
   });
 });
+
+$(document).ready(function() {
+  $('#deleteMethodModal').on('show.bs.modal', function (e) {
+    var method_id = $(e.relatedTarget).data('method-id');
+    var method_name = $(e.relatedTarget).data('method-name');
+    var modal_header = 'Delete payment method';
+    var modalQuestion = 'Are you sure to delete the payment method: ' + method_name + '?';
+    var modal = $(e.currentTarget);
+    modal.find('input[name="method_name"').val('');
+    modal.find('#modalLabel').html(modal_header);
+    modal.find('input[name="method_id"]').val(method_id);
+    modal.find('#modal-question').html(modalQuestion);
+   });
+});

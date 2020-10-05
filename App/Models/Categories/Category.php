@@ -66,7 +66,7 @@ class Category extends \Core\Model
 
   public static function analyseDeletingCategory($category_id, $transaction_type)
   {
-    $number_of_usage_this_category = static::findNumberOfUsageOfTheCategory($category_id, $transaction_type);
+    $number_of_usage_this_category = static::findNumberOfUsageTheCategory($category_id, $transaction_type);
     if ($number_of_usage_this_category == 0) {
       return static::deleteCategory($category_id, $transaction_type);
     }
@@ -75,7 +75,7 @@ class Category extends \Core\Model
     }
   }
 
-  public static function findNumberOfUsageOfTheCategory($category_id, $transaction_type)
+  public static function findNumberOfUsageTheCategory($category_id, $transaction_type)
   {
     $sql = 'SELECT * FROM ' . $transaction_type . 's
             WHERE ' . $transaction_type . '_category_assigned_to_user_id = :category_id';

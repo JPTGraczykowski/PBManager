@@ -117,4 +117,41 @@ class PaymentMethodsAssignedToUser extends \Core\Model
 
     }
   }
+
+  public static function analyseDeletingPaymentMethod($method_id)
+  {
+    $number_of_usage_this_method = static::findNumberOfUsageTheMethod($method_id);
+    if ($number_of_usage_this_method == 0) {
+      return static::deleteMethod($method_id);
+    }
+    else {
+      return false;
+    }
+  }
+
+  public static function findNumberOfUsageTheMethod($method_id)
+  {
+    $sql = 'SELECT * FROM expenses
+            WHERE payment_method_assigned_to_user_id = :method_id';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':method_id', $method_id, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->rowCount();
+  }
+
+  public static function deleteMethod($method_id)
+  {
+    $sql = 'DELETE FROM payment_methods_assigned_to_users
+            WHERE id = :method_id';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':method_id', $method_id, PDO::PARAM_INT);
+
+    return $stmt->execute();
+  }
 }

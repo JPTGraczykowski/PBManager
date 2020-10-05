@@ -11,7 +11,6 @@ class PaymentMethod extends Authenticated
 {
   public function addPaymentMethodAction()
   {
-    PaymentMethodsAssignedToUser::addNewMethod($_POST['method_name']);
     if (PaymentMethodsAssignedToUser::addNewMethod($_POST['method_name'])) {
       Flash::addMessage('Payment method added successfully');
       $this->redirect('/Settings/show');
@@ -37,6 +36,17 @@ class PaymentMethod extends Authenticated
       $this->redirect('/Settings/show');
     } else {
       Flash::addMessage('Unsuccessful editting method name', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
+
+  public function deleteMethod()
+  {
+    if (PaymentMethodsAssignedToUser::analyseDeletingPaymentMethod($_POST['method_id'])) {
+      Flash::addMessage('Payment method deleted successfully');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful deleting payment method', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
   }
