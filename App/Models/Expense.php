@@ -20,14 +20,15 @@ class Expense extends \Core\Model
     $this->validate();
 
     if (empty($this->errors)) {
-      $sql = 'INSERT INTO expenses (user_id, expense_category_assigned_to_user_id, amount, date_of_expense, expense_comment)
-              VALUES (:user_id, :expense_category_id, :amount, :date_of_expense, :expense_comment)';
+      $sql = 'INSERT INTO expenses (user_id, expense_category_assigned_to_user_id, payment_method_assigned_to_user_id, amount, date_of_expense, expense_comment)
+              VALUES (:user_id, :expense_category_id, :payment_method_id, :amount, :date_of_expense, :expense_comment)';
 
       $db = static::getDB();
       $stmt = $db->prepare($sql);
 
       $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
       $stmt->bindValue(':expense_category_id', $this->expense_category_id, PDO::PARAM_INT);
+      $stmt->bindValue(':payment_method_id', $this->payment_method_id, PDO::PARAM_INT);
       $stmt->bindValue(':amount', $this->amount, PDO::PARAM_STR);
       $stmt->bindValue(':date_of_expense', $this->date, PDO::PARAM_STR);
       $stmt->bindValue(':expense_comment', $this->comment, PDO::PARAM_STR);
@@ -86,19 +87,5 @@ class Expense extends \Core\Model
     $stmt->execute();
 
     return $stmt->fetchAll();
-    }
-
-    public static function addNewCategory($name)
-    {
-      $sql = 'INSERT INTO expenses_category_assigned_to_users
-              VALUES (NULL, :user_id, :name)';
-
-      $db = static::getDB();
-      $stmt = $db->prepare($sql);
-
-      $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-      $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-
-      $stmt->execute();
     }
 }

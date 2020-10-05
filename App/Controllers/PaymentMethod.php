@@ -42,7 +42,11 @@ class PaymentMethod extends Authenticated
 
   public function deleteMethod()
   {
-    if (PaymentMethodsAssignedToUser::analyseDeletingPaymentMethod($_POST['method_id'])) {
+    if (PaymentMethodsAssignedToUser::isTheOnlyPaymentMethod($_POST['method_id']) == 1) {
+      Flash::addMessage('This is the only payment method. It can not be deleted', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+    elseif (PaymentMethodsAssignedToUser::analyseDeletingPaymentMethod($_POST['method_id'])) {
       Flash::addMessage('Payment method deleted successfully');
       $this->redirect('/Settings/show');
     } else {

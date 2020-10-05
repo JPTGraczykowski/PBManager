@@ -68,13 +68,13 @@ class Category extends \Core\Model
 
       $sql = 'UPDATE '.$transaction_type.'s_category_assigned_to_users
               SET name = :name
-              WHERE id = :id';
+              WHERE id = :category_id';
 
       $db = static::getDB();
       $stmt = $db->prepare($sql);
 
       $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-      $stmt->bindValue(':id', $edited_category_id, PDO::PARAM_INT);
+      $stmt->bindValue(':category_id', $edited_category_id, PDO::PARAM_INT);
 
       return $stmt->execute();
 
