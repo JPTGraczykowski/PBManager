@@ -1,8 +1,8 @@
 $(document).ready(function() {
   $('#editMethodModal').on('show.bs.modal', function (e) {
-    var method_id = $(e.relatedTarget).data('method-id');
-    var modal_header = 'Edit method category';
-    var modal = $(e.currentTarget);
+    let method_id = $(e.relatedTarget).data('method-id');
+    let modal_header = 'Edit method category';
+    let modal = $(e.currentTarget);
     modal.find('#modalLabel').html(modal_header);
     modal.find('input[name="method_name"').val('');
     modal.find('input[name="method_id"]').val(method_id);
@@ -27,14 +27,16 @@ $('#editMethodModal').on('show.bs.modal', function (e) {
 
 $(document).ready(function() {
   $('#deleteMethodModal').on('show.bs.modal', function (e) {
-    var method_id = $(e.relatedTarget).data('method-id');
-    var method_name = $(e.relatedTarget).data('method-name');
-    var modal_header = 'Delete payment method';
-    var modalQuestion = 'Are you sure to delete the payment method: ' + method_name + '?';
-    var modal = $(e.currentTarget);
+    let method_id = $(e.relatedTarget).data('method-id');
+    let method_name = $(e.relatedTarget).data('method-name');
+    let modal_header = 'Delete payment method';
+    let modalQuestion = 'Are you sure to delete the payment method: ' + method_name + '?';
+    let modalHint = 'If there are transactions which belongs to this payment method they will be assigned to "Default" payment method.';
+    let modal = $(e.currentTarget);
     modal.find('input[name="method_name"').val('');
     modal.find('#modalLabel').html(modal_header);
     modal.find('input[name="method_id"]').val(method_id);
     modal.find('#modal-question').html(modalQuestion);
+    modal.find('#modal-hint').html(modalHint);
    });
 });

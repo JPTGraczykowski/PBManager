@@ -64,7 +64,11 @@ class CategoryController extends Authenticated
 
   public function deleteCategory()
   {
-    if (Category::analyseDeletingCategory($_POST['category_id'], $_POST['transaction_type'])) {
+    if (Category::isTheOnlyCategory($_POST['category_id'], $_POST['transaction_type']) == 1) {
+      Flash::addMessage('This is the only category. It can not be deleted', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+    elseif (Category::analyseDeletingCategory($_POST['category_id'], $_POST['transaction_type'])) {
       Flash::addMessage('Category deleted successfully');
       $this->redirect('/Settings/show');
     } else {
