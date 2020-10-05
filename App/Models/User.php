@@ -26,7 +26,6 @@ class User extends \Core\Model
         $this->validate();
 
         if (empty($this->errors)) {
-
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
             $sql = 'INSERT INTO users (name, email, password_hash)

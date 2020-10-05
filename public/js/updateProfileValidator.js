@@ -14,53 +14,53 @@ $.validator.addMethod('validPassword',
       'Must contain at least one letter and one number'
   );
 
-  $('#changeNameModal').ready(function() {
-      $('#changeNameModalForm').validate({
-          rules: {
-              name: 'required',
-          }
-      });
-  });
-
-  $('#changeEmailModal').ready(function() {
-      $('#changeEmailModalForm').validate({
-          rules: {
-            email: {
-              required: true,
-              email: true,
-              remote: '/Account/validateEmail'
-            }
-          },
-          messages: {
-            email: {
-                remote: 'Email already taken'
-            }
-          }
-      });
-  });
-
-  $('#changePasswordModal').ready(function() {
-    $('#changePasswordModalForm').validate({
-      rules: {
-        old_password: {
-          remote: '/Account/checkPassword'
-        },
-        new_password: {
-          required: true,
-          minlength: 6,
-          validPassword: true
-        },
-        password_confirmation: {
-          equalTo: '#inputPassword'
+$('#changeNameModal').ready(function() {
+    $('#changeNameModalForm').validate({
+        rules: {
+            name: 'required',
         }
-      },
-      messages: {
-        email: {
-          remote: 'Email already taken'
-        },
-        old_password: {
-          remote: 'Password is incorrect'
-        }
-      }
     });
+});
+
+$('#changeEmailModal').ready(function() {
+    $('#changeEmailModalForm').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+            remote: '/Account/validateEmail'
+          }
+        },
+        messages: {
+          email: {
+              remote: 'Email already taken'
+          }
+        }
+    });
+});
+
+$('#changePasswordModal').ready(function() {
+  $('#changePasswordModalForm').validate({
+    rules: {
+      old_password: {
+        remote: '/Account/checkPassword'
+      },
+      new_password: {
+        required: true,
+        minlength: 6,
+        validPassword: true
+      },
+      password_confirmation: {
+        equalTo: '#inputPassword'
+      }
+    },
+    messages: {
+      email: {
+        remote: 'Email already taken'
+      },
+      old_password: {
+        remote: 'Password is incorrect'
+      }
+    }
   });
+});
