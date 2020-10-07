@@ -56,6 +56,8 @@ class PaymentMethodsAssignedToUser extends \Core\Model
 
   public static function addNewMethod($name)
   {
+    $name = setNameToCamelCase($name);
+
     if (static::paymentMethodExists($name) || $name == '') {
 
       return false;
@@ -82,6 +84,8 @@ class PaymentMethodsAssignedToUser extends \Core\Model
 
   public static function findByPaymentMethodName($name)
   {
+    $name = setNameToCamelCase($name);
+    
     $sql = 'SELECT * FROM payment_methods_assigned_to_users
             WHERE name = :name AND user_id = :user_id';
 
@@ -239,5 +243,10 @@ class PaymentMethodsAssignedToUser extends \Core\Model
     $stmt->execute();
 
     return $stmt->rowCount();
+  }
+
+  public static function setNameToCamelCase($name)
+  {
+    return $name = ucwords($name);
   }
 }

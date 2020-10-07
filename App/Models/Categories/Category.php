@@ -27,6 +27,8 @@ class Category extends \Core\Model
 
   public static function findByCategoryName($name, $transaction_type)
   {
+      $name = static::setNameToCamelCase($name);
+      
       $sql = 'SELECT * FROM ' . $transaction_type . 's_category_assigned_to_users
               WHERE name = :name AND user_id = :user_id';
 
@@ -183,5 +185,10 @@ class Category extends \Core\Model
     $stmt->execute();
 
     return $stmt->rowCount();
+  }
+
+  public static function setNameToCamelCase($name)
+  {
+    return $name = ucwords($name);
   }
 }
