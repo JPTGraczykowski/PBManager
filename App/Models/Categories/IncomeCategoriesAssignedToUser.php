@@ -45,12 +45,11 @@ class IncomeCategoriesAssignedToUser extends Category
 
   public static function addNewCategory($name)
   {
+    $name = static::setNameToCamelCase($name);
+
     if (static::categoryNameExists($name, 'income') || $name == '') {
-
       return false;
-
     } else {
-
       $sql = 'INSERT INTO incomes_category_assigned_to_users
               VALUES (NULL, :user_id, :name)';
 
@@ -61,7 +60,6 @@ class IncomeCategoriesAssignedToUser extends Category
       $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
       return $stmt->execute();
-
     }
   }
 }

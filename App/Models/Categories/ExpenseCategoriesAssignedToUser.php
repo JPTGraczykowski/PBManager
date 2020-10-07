@@ -44,12 +44,11 @@ class ExpenseCategoriesAssignedToUser extends Category
 
   public static function addNewCategory($name)
   {
+    $name = static::setNameToCamelCase($name);
+
     if (static::categoryNameExists($name, 'expense') || $name == '') {
-
       return false;
-
     } else {
-
       $sql = 'INSERT INTO expenses_category_assigned_to_users
               VALUES (NULL, :user_id, :name)';
 
@@ -60,7 +59,6 @@ class ExpenseCategoriesAssignedToUser extends Category
       $stmt->bindValue(':name', $name, PDO::PARAM_STR);
 
       return $stmt->execute();
-
     }
   }
 }
