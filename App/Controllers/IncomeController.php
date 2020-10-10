@@ -38,6 +38,6 @@ class IncomeController extends Authenticated
           'income_categories' => $this->income_categories,
           'income' => $income
       ]);
-  }
+    }
   }
 }

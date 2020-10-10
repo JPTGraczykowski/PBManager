@@ -686,6 +686,7 @@ h3 {
   background-color: #696969;
   border-radius: 10px;
   margin-bottom: 5px;
+  width: 100%;
 }
 
 .PBTableRows > li {
@@ -725,6 +726,13 @@ h3 {
 .editDeleteSpan svg:hover{
   cursor: pointer;
   color: #118be2;
+}
+
+.transactionDetails {
+  /* display: none; */
+  background-color: #696969;
+  height: 100px;
+  border: 1px solid black;
 }
 
 /* ============== site footer =========== */

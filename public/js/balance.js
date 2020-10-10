@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  var incomes = $("#incomes li");
-  var expenses = $("#expenses li");
+  var incomes = $("#incomes li").find(".amountCell");
+  var expenses = $("#expenses li").find(".amountCell");
   var balanceWindow = $("#balanceWindow");
   var balance = 0;
   for (let i = 0; i < incomes.length; i++) {
@@ -27,16 +27,16 @@ google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var incomesItems = $("#incomesItems li");
-  var expensesItems = $("#expensesItems li");
-  var incomes = $("#incomes li");
-  var expenses = $("#expenses li");
+  var incomesItems = $("#incomes li").find(".categoryCell");
+  var expensesItems = $("#expenses li").find(".categoryCell");
+  var incomes = $("#incomes li").find(".amountCell");
+  var expenses = $("#expenses li").find(".amountCell");
 
   var itemsIncomesArray = [["Income Item", "Amount"]];
   for (let i = 0; i < incomesItems.length; i++) {
     if (Number(incomes[i].innerHTML) > 0)
       itemsIncomesArray.push([
-        incomesItems[i].innerHTML,
+        incomesItems[i].textContent,
         Number(incomes[i].innerHTML),
       ]);
   }
@@ -45,7 +45,7 @@ function drawChart() {
   for (let i = 0; i < expensesItems.length; i++) {
     if (Number(expenses[i].innerHTML) > 0)
       itemsExpensesArray.push([
-        expensesItems[i].innerHTML,
+        expensesItems[i].textContent,
         Number(expenses[i].innerHTML),
       ]);
   }
