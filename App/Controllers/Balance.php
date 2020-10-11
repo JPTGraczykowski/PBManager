@@ -21,6 +21,7 @@ class Balance extends Authenticated
   public $expenses;
   public $incomes_grouped_to_categories;
   public $expenses_grouped_to_categories;
+  public $time_period;
 
   protected function before()
   {
@@ -42,7 +43,8 @@ class Balance extends Authenticated
       'incomes' => $this->incomes_grouped_to_categories,
       'expenses' => $this->expenses_grouped_to_categories,
       'sum_of_incomes' => $this->sum_of_incomes,
-      'sum_of_expenses' => $this->sum_of_expenses
+      'sum_of_expenses' => $this->sum_of_expenses,
+      'time_period' => $this->time_period
     ]);
   }
 
@@ -87,16 +89,20 @@ class Balance extends Authenticated
     {
       $this->start_date = $_POST['start_date'];
       $this->end_date = $_POST['end_date'];
+      $this->time_period = 'other_period_of_time';
     }
     elseif(isset($_POST['time_period']))
     {
       $this->start_date = DateHelper::setStartDate($_POST['time_period']);
       $this->end_date = DateHelper::setEndDate($_POST['time_period']);
+      $this->time_period = $_POST['time_period'];
+
     }
     else
     {
       $this->start_date = DateHelper::setStartDate('total_time');
       $this->end_date = DateHelper::setEndDate('total_time');
+      $this->time_period = 'total_time';
     }
   }
 
