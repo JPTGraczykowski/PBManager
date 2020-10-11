@@ -682,23 +682,18 @@ h3 {
   text-align: left;
   padding: 0;
   margin: 0;
-  border: 1px solid black;
-  background-color: #696969;
-  border-radius: 10px;
-  margin-bottom: 5px;
   width: 100%;
 }
 
 .PBTableRows > li {
   width: 100%;
-  border-bottom: 1px solid black;
+  border: 1px solid black;
+  background-color: #696969;
+  border-radius: 10px;
   height: 30px;
   line-height: 175%;
   text-align: center;
-}
-
-.PBTableRows > li:last-child {
-  border: 0;
+  margin: 2px 0;
 }
 
 .PBTableFooter {
@@ -729,10 +724,12 @@ h3 {
 }
 
 .transactionDetails {
-  /* display: none; */
-  background-color: #696969;
-  height: 100px;
+  display: none;
+  margin: 5px 0;
   border: 1px solid black;
+  border-radius: 10px;
+  background-color: #7a7a7a;
+  padding: 10px 20px;
 }
 
 /* ============== site footer =========== */

@@ -73,6 +73,7 @@ class Balance extends Authenticated
       if ($expense['expense_category_assigned_to_user_id'] == $category_id) {
         array_push($response, array('date_of_expense' => $expense['date_of_expense'],
                                 'amount' => $expense['amount'],
+                                'payment_method' => PaymentMethodsAssignedToUser::getPaymentMethodNameById($expense['payment_method_assigned_to_user_id']),
                                 'expense_comment' => $expense['expense_comment']));
       }
     }

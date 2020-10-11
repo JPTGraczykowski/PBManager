@@ -117,6 +117,22 @@ class PaymentMethodsAssignedToUser extends \Core\Model
     return $stmt->fetch(PDO::FETCH_COLUMN, 0);
   }
 
+  public static function getPaymentMethodNameById($method_id)
+  {
+    $sql = 'SELECT name FROM payment_methods_assigned_to_users
+            WHERE id = :id AND user_id = :user_id';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':id', $method_id, PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_COLUMN, 0);
+  }
+
   public static function editMethodName($name, $edited_method_id)
   {
     if (static::paymentMethodExists($name) || $name == '') {
