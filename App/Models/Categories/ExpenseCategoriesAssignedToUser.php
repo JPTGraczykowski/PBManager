@@ -29,7 +29,7 @@ class ExpenseCategoriesAssignedToUser extends Category
     $new_user_id = User::getUserIdByEmail($new_user_email);
 
     $sql = 'INSERT INTO expenses_category_assigned_to_users
-            VALUES (NULL, :user_id, :name)';
+            VALUES (NULL, :user_id, :name, NULL)';
 
     $db = static::getDB();
     $stmt = $db->prepare($sql);
@@ -50,7 +50,7 @@ class ExpenseCategoriesAssignedToUser extends Category
       return false;
     } else {
       $sql = 'INSERT INTO expenses_category_assigned_to_users
-              VALUES (NULL, :user_id, :name)';
+              VALUES (NULL, :user_id, :name, NULL)';
 
       $db = static::getDB();
       $stmt = $db->prepare($sql);
@@ -60,5 +60,54 @@ class ExpenseCategoriesAssignedToUser extends Category
 
       return $stmt->execute();
     }
+  }
+
+  public static function setLimit($limit, $category_id)
+  {
+    if (validate($limit)) {
+      $sql = 'UPDATE expenses_category_assigned_to_users
+            SET limit = :limit
+            WHERE id = :category_id';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+
+      $stmt->bindValue(':limit', $limit, PDO::PARAM_STR);
+      $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
+
+      return $stmt->execute();
+    }
+  }
+
+  public static function unsetLimit($category_id)
+  {
+    $sql = 'UPDATE expenses_category_assigned_to_users
+            SET limit = NULL
+            WHERE id = :category_id';
+
+      $db = static::getDB();
+      $stmt = $db->prepare($sql);
+
+      $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
+
+      return $stmt->execute();
+  }
+
+  public static function validateLimit ($limit)
+  {
+    if ($limit == '') {
+      return false;
+    }
+    if ($limit <= 0 || $limit > 99999999.99) {
+      return false;
+    }
+
+    $limit = str_replace(',', '.', $limit);
+
+    if (filter_var($limit, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) === false) {
+        return false;
+    }
+
+    return true;
   }
 }

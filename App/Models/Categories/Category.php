@@ -163,7 +163,7 @@ class Category extends \Core\Model
   {
     $default_name = 'Default';
     $sql = 'INSERT INTO ' . $transaction_type . 's_category_assigned_to_users
-            VALUES (NULL, :user_id, :name)';
+            VALUES (NULL, :user_id, :name, NULL)';
 
     $db = static::getDB();
     $stmt = $db->prepare($sql);
