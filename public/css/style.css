@@ -560,6 +560,11 @@ h3 {
   color: #fefefe;
 }
 
+#otherPeriodOfTimeLabel {
+  padding: 3px 0;
+  display: none;
+}
+
 #balanceWindow {
   height: 120px;
   width: 100%;
