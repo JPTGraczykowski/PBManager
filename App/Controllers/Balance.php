@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \Core\View;
 use \App\Models\Income;
 use \App\Models\Expense;
+use \App\Models\categories\Category;
 use \App\Models\Categories\ExpenseCategoriesAssignedToUser;
 use \App\Models\Categories\IncomeCategoriesAssignedToUser;
 use \App\Models\PaymentMethodsAssignedToUser;
@@ -43,6 +44,41 @@ class Balance extends Authenticated
       'sum_of_incomes' => $this->sum_of_incomes,
       'sum_of_expenses' => $this->sum_of_expenses
     ]);
+  }
+
+  public function showDetailedIncomesAction()
+  {
+    $response = [];
+    $category_name = $_GET['category_name'];
+    $category_id = Category::getCategoryIdByName($category_name, 'income');
+
+    foreach($this->incomes as &$income) {
+      if ($income['income_category_assigned_to_user_id'] == $category_id) {
+        array_push($response, array('date_of_income' => $income['date_of_income'],
+                                'amount' => $income['amount'],
+                                'income_comment' => $income['income_comment']));
+      }
+    }
+    
+    echo json_encode($response);
+  }
+
+  public function showDetailedExpensesAction()
+  {
+    $response = [];
+    $category_name = $_GET['category_name'];
+    $category_id = Category::getCategoryIdByName($category_name, 'expense');
+    
+    foreach($this->expenses as &$expense) {
+      if ($expense['expense_category_assigned_to_user_id'] == $category_id) {
+        array_push($response, array('date_of_expense' => $expense['date_of_expense'],
+                                'amount' => $expense['amount'],
+                                'payment_method' => PaymentMethodsAssignedToUser::getPaymentMethodNameById($expense['payment_method_assigned_to_user_id']),
+                                'expense_comment' => $expense['expense_comment']));
+      }
+    }
+    
+    echo json_encode($response);
   }
 
   private function setDateRange()
