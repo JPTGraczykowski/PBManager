@@ -14,10 +14,10 @@ class CategoryController extends Authenticated
   public function addIncomeCategoryAction()
   {
     if (IncomeCategoriesAssignedToUser::addNewCategory($_POST['category_name'])) {
-      Flash::addMessage('Income category added successfully');
+      Flash::addMessage('The income category added successfully');
       $this->redirect('/Settings/show');
     } else {
-      Flash::addMessage('Unsuccessful adding new category', Flash::WARNING);
+      Flash::addMessage('Unsuccessful adding the new category', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
   }
@@ -25,10 +25,10 @@ class CategoryController extends Authenticated
   public function addExpenseCategoryAction()
   {
     if (ExpenseCategoriesAssignedToUser::addNewCategory($_POST['category_name'])) {
-      Flash::addMessage('Expense category added successfully');
+      Flash::addMessage('The expense category added successfully');
       $this->redirect('/Settings/show');
     } else {
-      Flash::addMessage('Unsuccessful adding new category', Flash::WARNING);
+      Flash::addMessage('Unsuccessful adding the new category', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
   }
@@ -54,10 +54,10 @@ class CategoryController extends Authenticated
   public function editCategoryName()
   {
     if (Category::editCategoryName($_POST['category_name'], $_POST['category_id'], $_POST['transaction_type'])) {
-      Flash::addMessage('Category name editted successfully');
+      Flash::addMessage('The category name editted successfully');
       $this->redirect('/Settings/show');
     } else {
-      Flash::addMessage('Unsuccessful editting category name', Flash::WARNING);
+      Flash::addMessage('Unsuccessful editting the category name', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
   }
@@ -69,10 +69,32 @@ class CategoryController extends Authenticated
       $this->redirect('/Settings/show');
     }
     elseif (Category::analyseDeletingCategory($_POST['category_id'], $_POST['transaction_type'])) {
-      Flash::addMessage('Category deleted successfully');
+      Flash::addMessage('The category deleted successfully');
       $this->redirect('/Settings/show');
     } else {
-      Flash::addMessage('Unsuccessful deleting category', Flash::WARNING);
+      Flash::addMessage('Unsuccessful deleting the category', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
+
+  public function setLimit()
+  {
+    if (Category::setLimit($_POST['limit'], $_POST['category_id'])) {
+      Flash::addMessage('The limit has been set');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful setting the limit', Flash::WARNING);
+      $this->redirect('/Settings/show');
+    }
+  }
+
+  public function unsetLimit()
+  {
+    if (Category::unsetLimit($_POST['category_id'])) {
+      Flash::addMessage('The limit has been unset');
+      $this->redirect('/Settings/show');
+    } else {
+      Flash::addMessage('Unsuccessful unsetting the limit', Flash::WARNING);
       $this->redirect('/Settings/show');
     }
   }
