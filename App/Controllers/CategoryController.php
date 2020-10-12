@@ -99,7 +99,11 @@ class CategoryController extends Authenticated
 
   public function limitExistsAction()
   {
-    
     echo json_encode(ExpenseCategoriesAssignedToUser::limitExists($_GET['category_id']));
+  }
+
+  public function getCategoryLimit()
+  {
+    echo json_encode(ExpenseCategoriesAssignedToUser::getCategoryLimit($_GET['category_id']));
   }
 }

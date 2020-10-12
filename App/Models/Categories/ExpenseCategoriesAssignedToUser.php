@@ -128,4 +128,18 @@ class ExpenseCategoriesAssignedToUser extends Category
       return false;
     }
   }
+
+  public static function getCategoryLimit($category_id)
+  {
+    $sql = 'SELECT `limit` FROM expenses_category_assigned_to_users WHERE id = :category_id';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    return $stmt->fetch(PDO::FETCH_COLUMN, 0);
+  }
 }
