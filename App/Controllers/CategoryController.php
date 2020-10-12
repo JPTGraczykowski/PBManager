@@ -77,9 +77,9 @@ class CategoryController extends Authenticated
     }
   }
 
-  public function setLimit()
+  public function setLimitAction()
   {
-    if (Category::setLimit($_POST['limit'], $_POST['category_id'])) {
+    if (ExpenseCategoriesAssignedToUser::setLimit($_POST['limit'], $_POST['category_id'])) {
       Flash::addMessage('The limit has been set');
       $this->redirect('/Settings/show');
     } else {
@@ -88,14 +88,18 @@ class CategoryController extends Authenticated
     }
   }
 
-  public function unsetLimit()
+  public function unsetLimitAction()
   {
-    if (Category::unsetLimit($_POST['category_id'])) {
-      Flash::addMessage('The limit has been unset');
-      $this->redirect('/Settings/show');
+    if (ExpenseCategoriesAssignedToUser::unsetLimit($_POST['category_id'])) {
+      return Flash::addMessage('The limit has been unset');
     } else {
-      Flash::addMessage('Unsuccessful unsetting the limit', Flash::WARNING);
-      $this->redirect('/Settings/show');
+      return Flash::addMessage('Unsuccessful unsetting the limit', Flash::WARNING);
     }
+  }
+
+  public function limitExistsAction()
+  {
+    
+    echo json_encode(ExpenseCategoriesAssignedToUser::limitExists($_GET['category_id']));
   }
 }

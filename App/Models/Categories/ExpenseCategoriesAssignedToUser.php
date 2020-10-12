@@ -64,9 +64,9 @@ class ExpenseCategoriesAssignedToUser extends Category
 
   public static function setLimit($limit, $category_id)
   {
-    if (validate($limit)) {
+    if (static::validateLimit($limit)) {
       $sql = 'UPDATE expenses_category_assigned_to_users
-            SET limit = :limit
+            SET `limit` = :limit
             WHERE id = :category_id';
 
       $db = static::getDB();
@@ -82,18 +82,18 @@ class ExpenseCategoriesAssignedToUser extends Category
   public static function unsetLimit($category_id)
   {
     $sql = 'UPDATE expenses_category_assigned_to_users
-            SET limit = NULL
+            SET `limit` = NULL
             WHERE id = :category_id';
 
-      $db = static::getDB();
-      $stmt = $db->prepare($sql);
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
 
-      $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
+    $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
 
-      return $stmt->execute();
+    return $stmt->execute();
   }
 
-  public static function validateLimit ($limit)
+  public static function validateLimit($limit)
   {
     if ($limit == '') {
       return false;
@@ -109,5 +109,23 @@ class ExpenseCategoriesAssignedToUser extends Category
     }
 
     return true;
+  }
+
+  public static function limitExists($category_id)
+  {
+    $sql = 'SELECT `limit` FROM expenses_category_assigned_to_users WHERE id = :category_id';
+
+    $db = static::getDB();
+    $stmt = $db->prepare($sql);
+
+    $stmt->bindValue(':category_id', $category_id, PDO::PARAM_STR);
+
+    $stmt->execute();
+
+    if ($stmt->fetch(PDO::FETCH_COLUMN, 0) != NULL) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
