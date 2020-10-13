@@ -142,4 +142,12 @@ class ExpenseCategoriesAssignedToUser extends Category
 
     return $stmt->fetch(PDO::FETCH_COLUMN, 0);
   }
+
+  public static function getCategoryLimitByName($category_name)
+  {
+    $category_id = Category::getCategoryIdByName($category_name, 'expense');
+    $category_limit = static::getCategoryLimit($category_id);
+
+    return $category_limit;
+  }
 }

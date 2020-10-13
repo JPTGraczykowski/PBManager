@@ -106,4 +106,9 @@ class CategoryController extends Authenticated
   {
     echo json_encode(ExpenseCategoriesAssignedToUser::getCategoryLimit($_GET['category_id']));
   }
+
+  public function getCategoryLimitByName()
+  {
+    echo json_encode(ExpenseCategoriesAssignedToUser::getCategoryLimitByName($_GET['category_name']));
+  }
 }
