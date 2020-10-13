@@ -83,6 +83,17 @@ class Balance extends Authenticated
     echo json_encode($response);
   }
 
+  public function showSumInTheCategoryAction()
+  {
+    $sum = 0;
+    foreach($this->expenses_grouped_to_categories as &$expenseCategory) {
+      if (key($expenseCategory) === $_GET['category_name']) {
+        $sum = current($expenseCategory);
+      }
+    }
+    echo json_encode($sum);
+  }
+
   private function setDateRange()
   {
     if(isset($_POST["start_date"]))

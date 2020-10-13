@@ -6,25 +6,7 @@
 
 <script src="/js/getTodayDate.js"></script>
 
-<script>
-
-  $(document).ready(function() {
-    $('#formAddExpense').validate({
-      rules: {
-        amount: {
-          required: true,
-          min: 0.01,
-          max: 9999999.99
-        },
-        date: 'required',
-        comment: {
-          maxlength: 100
-        }
-      }
-    });
-  });
-
-</script>
+<script src="/js/Ajax/categoryLimitNewExpense.js"></script>
 
 {% endblock %}
 
@@ -55,7 +37,8 @@
       <form method="post" action="/ExpenseController/create" id="formAddExpense">
 
         <div class="inputPanel">
-          <input type="number" name="amount" step="0.01" placeholder="0.00" min="0.01" max="99999999.99" class="form-control" value="{{ expense.amount }}" />
+          <input id= "inputAmount" onchange="checkLimit();" type="number" name="amount" step="0.01" placeholder="0.00" min="0.01" max="99999999.99" class="form-control" value="{{ expense.amount }}" />
+          <span id="categoryLimitWarning"></span>
         </div>
 
         <div class="inputPanel">
@@ -63,9 +46,9 @@
         </div>
 
         <div class="inputPanel">
-          <select class="form-control" name="expense_category_id">
+          <select id="inputCategory" onchange="checkLimit();" class="form-control" name="expense_category_id" data-category-id="{{category[0]}}">
             {% for category in expense_categories %}
-              <option value="{{ category[0]}}">{{ category[1] }}</option>';
+              <option data-category-name="{{category[1]}}" value="{{ category[0]}}">{{ category[1] }}</option>';
             {% endfor %}
           </select>
         </div>
