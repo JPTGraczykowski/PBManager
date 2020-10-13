@@ -723,7 +723,7 @@ h3 {
   margin-left: -45px;
 }
 
-.editDeleteSpan svg:hover{
+.editDeleteSpan a:hover{
   cursor: pointer;
   color: #118be2;
 }
@@ -735,6 +735,11 @@ h3 {
   border-radius: 10px;
   background-color: #7a7a7a;
   padding: 10px 20px;
+}
+
+.transactionDetailsWrapper:hover{
+  cursor: pointer;
+  color: #faad07;
 }
 
 /* ============== site footer =========== */
