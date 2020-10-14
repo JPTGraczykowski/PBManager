@@ -22,6 +22,15 @@ $(document).ready(function () {
   }
 });
 
+$(document).ready(function () {
+  $('.amountCell').map(function () {
+    this.innerHTML = parseFloat(this.innerHTML).toFixed(2);
+  });
+  $('.PBTableFooter').map(function () {
+    this.innerHTML = parseFloat(this.innerHTML).toFixed(2);
+  });
+});
+
 //Finance chart - Incomes
 google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChart);

@@ -9,6 +9,8 @@ $(document).ready(function() {
 
     if (transactionDetails.is(':hidden')) {
 
+      $(this).find('svg').css({'transform': 'rotate(-180deg)'});
+
       if (transaction_type === 'income') {
         url = '/Balance/showDetailedIncomes';
       } else {
@@ -53,6 +55,7 @@ $(document).ready(function() {
       transactionDetails.css('display', 'block');
 
     } else {
+      $(this).find('svg').css({'transform': 'rotate(0deg)'});
       transactionDetails.get(0).innerHTML = '';
       transactionDetails.css('display', 'none');
     }
