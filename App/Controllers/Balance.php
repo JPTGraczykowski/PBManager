@@ -111,9 +111,9 @@ class Balance extends Authenticated
     }
     else
     {
-      $this->start_date = DateHelper::setStartDate('total_time');
-      $this->end_date = DateHelper::setEndDate('total_time');
-      $this->time_period = 'total_time';
+      $this->start_date = DateHelper::setStartDate('current_month');
+      $this->end_date = DateHelper::setEndDate('current_month');
+      $this->time_period = 'current_month';
     }
   }
 
